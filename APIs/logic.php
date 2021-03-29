@@ -80,6 +80,7 @@
         }
 
         // Searches for all Ratings made under a specific song
+        // result contains all ratings under a song
         function searchRatings($conn, $songID)
         {
             $sql = "SELECT * FROM spotify.rating WHERE song_id = $songID";
@@ -89,6 +90,7 @@
         }
 
         // Searches for a rating under a specific song made by a specific user
+        // result contains all ratings made by specific user under specific song
         function searchSpecificRatings($conn, $songID, $username)
         {
             $sql = "SELECT * FROM spotify.rating WHERE song_id = $songID AND user_username = $username";
@@ -98,6 +100,7 @@
         }
 
         // Searches for all Ratings made by a specific user
+        // result contains all rating made by specific user
         function searchUsersRating($conn,$username){
             $sql = "SELECT * FROM spotify.rating WHERE user_username = $username";
             $result = mysqli_query($conn, $sql);
