@@ -73,7 +73,7 @@
 
         function searchArtistAlbum($conn, $artistID) // done
         {
-            $sql = "SELECT album_name FROM spotify.creates_album WHERE artist_id = $artistID";
+            $sql = "SELECT album_name FROM spotify.artist_album WHERE artist_id = $artistID";
             $result = mysqli_query($conn, $sql);
             
             return $result;
