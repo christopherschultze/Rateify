@@ -1,4 +1,6 @@
 <?php
+        //logs in with provided user info and password, then use SQL query to query database 
+        //after qurerying return the result
         function login($conn, $username, $pwd) // done
         {
             $sql = "SELECT * FROM spotify.account WHERE username = $username AND password = $pwd";
@@ -7,6 +9,8 @@
             return $result;
         }
 
+        //searches an account based on a given username
+        //SQL queries the account table and returns all tuples that have matching username with the given $username
         function searchAccount($conn, $username)
         {
             $sql = "SELECT * FROM spotify.account WHERE username = $username";
@@ -15,6 +19,8 @@
             return $result;
         }
 
+        //queries in song table and searches for all tuples that matches the given songId
+        //return the tuple of the song table if there is a matching tuple
         function searchSong($conn, $songId) // done
         {
             $sql = "SELECT * FROM spotify.song WHERE song_id = $songID";
@@ -23,6 +29,8 @@
             return $result;
         }
 
+        //searches for all albums inside album table
+        //returns any tuples that have name = $album_name
         function searchAlbum($conn, $album_name)//done
         {
             $sql = "SELECT * FROM spotify.album WHERE name = $album_name";
@@ -31,6 +39,8 @@
             return $result;
         }
 
+        //queries for all the songs in an album in the song table using a given $album_name
+        //result will contain all the songs that are in this specified album
         function searchSongsInAlbum($conn, $album_name) //done
         {
             $sql = "SELECT * FROM spotify.song WHERE album_name = $album_name";
@@ -39,6 +49,8 @@
             return $result;
         }
 
+        //queries for all the songs in a playlist in the song table using a given $playlist_name
+        //result will contain all the songs that are in this specified playlist
         function searchSongsInPlaylist($conn, $playlist_name) //done
         {
             $sql = "SELECT * FROM spotify.playlist_song WHERE playlist_name = $playlist_name";
@@ -47,6 +59,8 @@
             return $result;
         }
 
+        //queries for all the songs in a playlist in the song table using a given $username of an artist
+        //result will contain all the songs that are made by this artist
         function searchSongByArtist($conn, $username)
         {
             $sql = "SELECT * FROM spotify.aritst_song WHERE artist_username = $username";
@@ -55,6 +69,8 @@
             return $result;
         }
 
+        //queries for all the songs in a playlist in the song table using a given $username of a producer
+        //result will contain all the songs that are made by this producer
         function searchSongByProducer($conn, $username)
         {
             $sql = "SELECT * FROM spotify.producer_song WHERE producer_username = $username";
@@ -63,6 +79,8 @@
             return $result;
         }
 
+        //queries all playlist that matches the given $playlist_name in the playlist table
+        //result contains all the information of all matching playlist
         function searchPlaylist($conn, $username, $playlist_name)
         {
             $sql = "SELECT * FROM spotify.playlist WHERE user_username = $username AND name = $playlist_name";
@@ -71,6 +89,8 @@
             return $result;
         }
 
+        //queries all albums that are made by a specific artist by using the given $artistID
+        //result contains all the album name taken from the matching tuples
         function searchArtistAlbum($conn, $artistID) // done
         {
             $sql = "SELECT album_name FROM spotify.artist_album WHERE artist_id = $artistID";
@@ -205,5 +225,20 @@
         {
             $sql = "DELETE FROM spotify.rating WHERE song_id = $songId AND user_username = $username";
             print "Delete completed";
+        }
+
+        //uses the DELETE keyword for SQL and remove a song in that playlist
+        //after removing that song from that playlist in the playlist_song table, query for the song info using the searchSrong function
+        //the return value of the searchSong function will contain the duration of the song
+        //using the duration of this song to reduce the duration of the playlist and decrease the no_of_songs in the playlist by 1 as well
+        function removeSongFromPlaylist($conn, $playlist_name, $songID, $username)
+        {
+            $sql = "DELETE FROM spotify.playlist_song WHERE song_id = $songID AND playlist_name = $playlist_name";
+            $dur = 0;
+            $result = searchSong($conn, $songID);
+            $row = mysql_fetch_array($result);
+            $dur = $row['duration'];
+            $sql = "UPDATE spotify.playlist SET no_of_songs = no_of_songs - 1 WHERE name = $playlist_name";
+            $sql = "UPDATE spotify.playlist SET duration = duration - $dur WHERE name = $playlist_name";
         }
 ?>
