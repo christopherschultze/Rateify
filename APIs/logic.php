@@ -1,9 +1,15 @@
 <?php
+
+        // function test($conn)
+        // {
+        //     $sql = "INSERT INTO album (name, no_of_songs, duration, date_created)
+        //             VALUES ('hello', '0', '0', 'Today');";
+        // }
         //logs in with provided user info and password, then use SQL query to query database 
         //after qurerying return the result
         function login($conn, $username, $pwd) // done
         {
-            $sql = "SELECT * FROM spotify.account WHERE username = $username AND password = $pwd";
+            $sql = "SELECT * FROM spotify.account WHERE username = '$username' AND password = '$pwd'";
             $result = mysqli_query($conn, $sql);
             
             return $result;
@@ -13,17 +19,17 @@
         //SQL queries the account table and returns all tuples that have matching username with the given $username
         function searchAccount($conn, $username)
         {
-            $sql = "SELECT * FROM spotify.account WHERE username = $username";
+            $sql = "SELECT * FROM spotify.account WHERE username = '$username'";
             $result = mysqli_query($conn, $sql);
             
             return $result;
-        }
+        } 
 
         //queries in song table and searches for all tuples that matches the given songId
         //return the tuple of the song table if there is a matching tuple
         function searchSong($conn, $songId) // done
         {
-            $sql = "SELECT * FROM spotify.song WHERE song_id = $songID";
+            $sql = "SELECT * FROM spotify.song WHERE id = $songId";
             $result = mysqli_query($conn, $sql);
             
             return $result;
@@ -33,7 +39,7 @@
         //returns any tuples that have name = $album_name
         function searchAlbum($conn, $album_name)//done
         {
-            $sql = "SELECT * FROM spotify.album WHERE name = $album_name";
+            $sql = "SELECT * FROM spotify.album WHERE name = '$album_name'";
             $result = mysqli_query($conn, $sql);
             
             return $result;
@@ -43,7 +49,7 @@
         //result will contain all the songs that are in this specified album
         function searchSongsInAlbum($conn, $album_name) //done
         {
-            $sql = "SELECT * FROM spotify.song WHERE album_name = $album_name";
+            $sql = "SELECT * FROM spotify.song WHERE album_name = '$album_name'";
             $result = mysqli_query($conn, $sql);
             
             return $result;
@@ -53,7 +59,7 @@
         //result will contain all the songs that are in this specified playlist
         function searchSongsInPlaylist($conn, $playlist_name) //done
         {
-            $sql = "SELECT * FROM spotify.playlist_song WHERE playlist_name = $playlist_name";
+            $sql = "SELECT * FROM spotify.playlist_song WHERE playlist_name = '$playlist_name'";
             $result = mysqli_query($conn, $sql);
             
             return $result;
@@ -63,7 +69,7 @@
         //result will contain all the songs that are made by this artist
         function searchSongByArtist($conn, $username)
         {
-            $sql = "SELECT * FROM spotify.aritst_song WHERE artist_username = $username";
+            $sql = "SELECT * FROM spotify.aritst_song WHERE artist_username = '$username'";
             $result = mysqli_query($conn, $sql);
             
             return $result;
@@ -73,7 +79,7 @@
         //result will contain all the songs that are made by this producer
         function searchSongByProducer($conn, $username)
         {
-            $sql = "SELECT * FROM spotify.producer_song WHERE producer_username = $username";
+            $sql = "SELECT * FROM spotify.producer_song WHERE producer_username = '$username'";
             $result = mysqli_query($conn, $sql);
             
             return $result;
@@ -83,7 +89,7 @@
         //result contains all the information of all matching playlist
         function searchPlaylist($conn, $username, $playlist_name)
         {
-            $sql = "SELECT * FROM spotify.playlist WHERE user_username = $username AND name = $playlist_name";
+            $sql = "SELECT * FROM spotify.playlist WHERE user_username = '$username' AND name = '$playlist_name'";
             $result = mysqli_query($conn, $sql);
             
             return $result;
@@ -113,7 +119,7 @@
         // result contains all ratings made by specific user under specific song
         function searchSpecificRatings($conn, $songID, $username)
         {
-            $sql = "SELECT * FROM spotify.rating WHERE song_id = $songID AND user_username = $username";
+            $sql = "SELECT * FROM spotify.rating WHERE song_id = $songID AND user_username = '$username'";
             $result = mysqli_query($conn, $sql);
             
             return $result;
@@ -122,23 +128,51 @@
         // Searches for all Ratings made by a specific user
         // result contains all rating made by specific user
         function searchUsersRating($conn,$username){
-            $sql = "SELECT * FROM spotify.rating WHERE user_username = $username";
+            $sql = "SELECT * FROM spotify.rating WHERE user_username = '$username'";
             $result = mysqli_query($conn, $sql);
             
             return $result;
         }
         // creates a new Song based on the passed in info, if the album_name is not null, it also add the song to the album. Also based on the type of user, 
         //the corressponding function is also called to create a relation
-        function createSong($conn, $id, $album_name, $duration, $name, $date_created, $username, $type) //done
+        function createSong($conn) //done
         {
-            $sql = "INSERT INTO spotify.song (song_id, album_name, no_of_plays, duration, name, date_created)
-                    VALUES($id, $album_name, 0, $duration, $name, $date_created)";
-            if($album_name != NULL)
-                addSongToAlbum($conn, $album_name, $id);
-            if($type == 'Artist')
-                addToArtistSong($conn, $username, $id);
-            if($type == 'Producer')
-                addToProduceSong($conn, $username, $id);
+            // $id = $_POST['0'];
+            // $album_name = $_POST['album1'];
+            // $duration = $_POST['3'];
+            // $name = $_POST['name'];
+            // $date_created = $_POST['date_created'];
+            // $no_of_plays = $_POST['no_of_plays'];
+            // $album_name = $_POST[$album_name];
+            // $duration = $_POST[$duration];
+            // $name = $_POST[$name];
+            // $date_created = $_POST[$date_created];
+
+            // $sql = "INSERT INTO `song` (`id`, `album_name`, `no_of_plays`, `duration`, `name`, `date_created`) VALUES ('', $album_name, '0', $duration, '$name', $date_created)";
+            $sql = "INSERT INTO song (id, album_name, no_of_plays, duration, name, date_created)
+                    VALUES('$id', 
+                    '$album_name', 
+                    '$no_of_plays', 
+                    '$duration', 
+                    '$name', 
+                    '$date_created')";
+            // if (!mysql_query($sql,$conn))
+            //     echo "no";
+            // {
+          
+            // die('Error: ' . mysql_error());
+          
+            // }
+          
+          echo "1 record added";
+
+          
+            // if($album_name != NULL)
+            //     addSongToAlbum($conn, $album_name, $id);
+            // if($type == 'Artist')
+            //     addToArtistSong($conn, $username, $id);
+            // if($type == 'Producer')
+            //     addToProduceSong($conn, $username, $id);
             print "Insert completed.";
         }
 
@@ -146,7 +180,7 @@
         function addToArtistSong($conn, $username, $id)
         {
             $sql = "INSERT INTO spotify.artist_song(artist_username, song_id)
-                    VALUES($username, $id)";
+                    VALUES('$username', $id)";
             print "Insert completed.";
         }
 
@@ -154,7 +188,7 @@
         function addToProduceSong($conn, $username, $id)
         {
             $sql = "INSERT INTO spotify.producer_song(producer_username, song_id)
-                    VALUES($username, $id)";
+                    VALUES('$username', $id)";
             print "Insert completed.";
         }
 
@@ -162,7 +196,7 @@
         function createPlaylist($conn, $name, $user_username) //done
         {
             $sql = "INSERT INTO spotify.playlist (user_username, name, no_of_songs, duration)
-                    VALUES($user_username, $name, 0, 0)";
+                    VALUES('$user_username', '$name', 0, 0)";
             print "Insert completed.";
         }
 
@@ -170,8 +204,8 @@
         function addSongToAlbum($conn, $a_name, $songId) // done
         {
             $sql = "INSERT INTO spotify.album_song (album_name, song_id) 
-                    VALUES($a_name, $songId)";
-            $sql = "UPDATE spotify.song SET album_name = $a_name WHERE song_id = $songId";
+                    VALUES('$a_name', $songId)";
+            $sql = "UPDATE spotify.song SET album_name = '$a_name' WHERE song_id = $songId";
             makeChangestoAlbum($conn, $a_name, $songId);
             print "Insert completed.";
         }
@@ -181,7 +215,7 @@
         {
 
             $sql = "INSERT INTO spotify.playlist_song (playlist_name, song_id) 
-                    VALUES($p_name, $songID)";
+                    VALUES('$p_name', $songID)";
             makeChangestoPlaylist($conn, $p_name, $songId);
             print "Insert completed.";
         }
@@ -190,7 +224,7 @@
         function createAlbum($conn, $album_name, $date_created) //done
         {
             $sql = "INSERT INTO spotify.album (name, no_of_songs, duration, date_created)
-                    VALUES($album_name, 0, 0, $date_created)";
+                    VALUES('$album_name', 0, 0, '$date_created')";
             print "Insert completed.";
         }
 
@@ -198,7 +232,7 @@
         function addRating($conn, $username, $songId, $comment, $star_rating)
         {
             $sql = "INSERT INTO spotify.rating (user_username, song_id, star_rating, comment)
-                    VALUES($username, $songId, $star_rating, $comment)";
+                    VALUES('$username', $songId, $star_rating, '$comment')";
             print "Insert completed.";
         }
 
@@ -209,8 +243,8 @@
             $dur = 0;
             $row = mysql_fetch_array($result);
             $dur = $row['duration'];
-            $sql = "UPDATE spotify.album SET duration = duration + $dur WHERE name = $a_name ";
-            $sql = "UPDATE spotify.album SET no_of_songs = no_of_songs + 1 WHERE name = $a_name ";
+            $sql = "UPDATE spotify.album SET duration = duration + $dur WHERE name = '$a_name' ";
+            $sql = "UPDATE spotify.album SET no_of_songs = no_of_songs + 1 WHERE name = '$a_name' ";
             print "UPDATE completed.";
         }
 
@@ -221,36 +255,36 @@
             $dur = 0;
             $row = mysql_fetch_array($result);
             $dur = $row['duration'];
-            $sql = "UPDATE spotify.playlist SET duration = duration + $dur WHERE name = $p_name ";
-            $sql = "UPDATE spotify.playlist SET no_of_songs = no_of_songs + 1 WHERE name = $p_name ";
+            $sql = "UPDATE spotify.playlist SET duration = duration + $dur WHERE name = '$p_name' ";
+            $sql = "UPDATE spotify.playlist SET no_of_songs = no_of_songs + 1 WHERE name = '$p_name' ";
             print "UPDATE completed.";
         }
 
         // allows a general user or an admin to edit the comment of a Rating made by a specific user on a specific song 
         function editComment($conn, $username, $songId, $comment)
         {
-            $sql = "UPDATE spotify.rating SET comment = $comment WHERE user_username = $username AND song_id = $songId";
+            $sql = "UPDATE spotify.rating SET comment = '$comment' WHERE user_username = '$username' AND song_id = $songId";
         }
 
         // allows a general user or an admin to edit the Star rating of a Rating made by a specific user on a specific song 
         function editStarRating($conn, $username, $songId, $star)
         {
-            $sql = "UPDATE spotify.rating SET star_rating = $star WHERE user_username = $username AND song_id = $songId";
+            $sql = "UPDATE spotify.rating SET star_rating = $star WHERE user_username = '$username' AND song_id = $songId";
         }
 
         // if the user is an admin, it lets the user delete a Song as well as all relations that song has
         function deleteSong($conn, $songID)
         {
             $sql = "DELETE FROM spotify.song WHERE song_id = $songID";
-            $sql = "DELETE FROM spotify.album_song WHERE songId = $songID";
-            $sql = "DELETE FROM spotify.playlist_song WHERE song_id = $songID";
+            // $sql = "DELETE FROM spotify.album_song WHERE songId = $songID";
+            // $sql = "DELETE FROM spotify.playlist_song WHERE song_id = $songID";
             print "Delete completed";
         }
 
         //if the user is an admin, it lets the user delete a rating made by a specific user on a specific song 
         function deleteRating($conn, $username, $songId)
         {
-            $sql = "DELETE FROM spotify.rating WHERE song_id = $songId AND user_username = $username";
+            $sql = "DELETE FROM spotify.rating WHERE song_id = $songId AND user_username = '$username'";
             print "Delete completed";
         }
 
@@ -260,12 +294,12 @@
         //using the duration of this song to reduce the duration of the playlist and decrease the no_of_songs in the playlist by 1 as well
         function removeSongFromPlaylist($conn, $playlist_name, $songID, $username)
         {
-            $sql = "DELETE FROM spotify.playlist_song WHERE song_id = $songID AND playlist_name = $playlist_name";
+            $sql = "DELETE FROM spotify.playlist_song WHERE song_id = $songID AND playlist_name = '$playlist_name'";
             $dur = 0;
             $result = searchSong($conn, $songID);
             $row = mysql_fetch_array($result);
             $dur = $row['duration'];
-            $sql = "UPDATE spotify.playlist SET no_of_songs = no_of_songs - 1 WHERE name = $playlist_name";
-            $sql = "UPDATE spotify.playlist SET duration = duration - $dur WHERE name = $playlist_name";
+            $sql = "UPDATE spotify.playlist SET no_of_songs = no_of_songs - 1 WHERE name = '$playlist_name'";
+            $sql = "UPDATE spotify.playlist SET duration = duration - $dur WHERE name = '$playlist_name'";
         }
 ?>
