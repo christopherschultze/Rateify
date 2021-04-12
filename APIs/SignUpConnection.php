@@ -8,7 +8,9 @@
     $password = $_POST['password'];
     $account_type = $_POST['account_type'];
 
-    signup($conn,$username,$password,$account_type);
+    if(!empty($username) && !empty($password)){
+        signup($conn,$username,$password,$account_type);
+    }
 
     closeCon($conn); 
 
