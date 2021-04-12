@@ -2,14 +2,18 @@
 
         //logs in with provided user info and password, then use SQL query to query database 
         //after qurerying return the result
+       
         function login($conn, $username, $pwd) // done2
         {
             $sql = "SELECT * FROM account WHERE username = '$username' AND password = '$pwd'";
             $result = mysqli_query($conn, $sql);
             
-            return $result;
+            if($result && mysqli_num_rows($result) > 0){
+                return $result;
+            }
+            header("Location: login.php");
+            die;
         }
-
         //searches an account based on a given username
         //SQL queries the account table and returns all tuples that have matching username with the given $username
         function searchAccount($conn, $username) // done2
