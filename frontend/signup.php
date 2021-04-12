@@ -62,28 +62,37 @@
 
                     <!-- username field -->
                     <div class="form-group">
-                      <label for="exampleInputEmail1" >Username</label>
+                    <h5>Username</h5>
                       <input type="text" name = "username" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter username">
                     </div>
 
                     <!-- password field -->
                     <div class="form-group">
-                      <label for="exampleInputPassword1" >Password</label>
+                    <h5>Password</h5>
                       <input type="password" name = "password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
 
-                    <!-- account type dropdown -->
-                    <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Account type
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                        <li><a href="#" name = "account_type" data-value="listener">Listener</a></li>
-                        <li><a href="#" name = "account_type" data-value="artist">Artist</a></li>
-                        <li><a href="#" name = "account_type" data-value="producer">Producer</a></li>
-                        <li><a href="#" name = "account_type" data-value="admin">Admin</a></li>
-                      </ul>
+                    <!-- account type -->
+                    <h5>Account Type</h5>
+                    <div>
+                      <input type="radio" name="account_type" value="user"
+                             checked>
+                      <label for="huey">Listener</label>
+                    </div>
+                    
+                    <div>
+                      <input type="radio" name="account_type" value="artist">
+                      <label for="dewey">Artist</label>
+                    </div>
+
+                    <div>
+                      <input type="radio" name="account_type" value="producer">
+                      <label for="louie">Producer</label>
+                    </div>
+
+                    <div>
+                      <input type="radio" name="account_type" value="admin">
+                      <label for="louie">Admin</label>
                     </div>
 
                     <!-- register button -->
