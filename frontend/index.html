@@ -18,6 +18,7 @@
 
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="css/default.css" id="theme-color">
+    <link rel="phpFunctions" href="../APIs/logic.php">
 </head>
 <body>
 
