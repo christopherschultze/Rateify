@@ -5,7 +5,7 @@
 
     $conn = connect();
     echo "echooooooooooooooooooooooooooooooooooo";
-    if(isset($_SESSION['username'] && isset($_SESSION['password']))){
+    if(isset($_SESSION['username']) && isset($_SESSION['password']))){
         $username = $_SESSION['username'];
         $password = $_SESSION['password'];
     
