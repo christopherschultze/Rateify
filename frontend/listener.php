@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Admin</title>
+    <title>Rateify - Listener</title>
     <meta name="description"
           content="Rateify is a music service that allows users to rate songs"/>
 
@@ -25,7 +25,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.html">
+            <a class="navbar-brand heading-black" href="index.php">
                 Rateify
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -57,20 +57,20 @@
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
-                  Monitor song
+                <a href="listenerSongs.php" class="btn btn-primary" role="button" aria-pressed="true">
+                  Songs
                 </a>
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
-                  Monitor rating
+                <a href="listenerPlaylists.php" class="btn btn-primary" role="button" aria-pressed="true">
+                  Playlists
                 </a>
               </div>
 
               <!-- logout button-->
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.html" class="btn btn-primary" role="button" aria-pressed="true">
+                <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
                   Logout
                 </a>
               </div>

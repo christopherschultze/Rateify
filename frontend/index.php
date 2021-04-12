@@ -25,7 +25,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.html">
+            <a class="navbar-brand heading-black" href="index.php">
                 Rateify
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -126,7 +126,7 @@
         <div class="row">
             <div class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <h3>Sign in to your Rateify account</h3>
-                <a href="login.html" class="btn btn-primary" role="button" aria-pressed="true">
+                <a href="login.php" class="btn btn-primary" role="button" aria-pressed="true">
                     Log in
                 </a>
             </div>
@@ -140,7 +140,7 @@
         <div class="row">
             <div class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <h3>Create a Rateify account</h3>
-                <a href="signup.html" class="btn btn-primary" role="button" aria-pressed="true">
+                <a href="signup.php" class="btn btn-primary" role="button" aria-pressed="true">
                     Sign up now!
                 </a>
             </div>
