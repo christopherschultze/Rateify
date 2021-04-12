@@ -14,7 +14,6 @@
             header("Location: login.php");
             die;
         }
-        
         //searches an account based on a given username
         //SQL queries the account table and returns all tuples that have matching username with the given $username
         function searchAccount($conn, $username) // done2
