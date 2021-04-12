@@ -25,7 +25,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.html">
+            <a class="navbar-brand heading-black" href="index.php">
                 Rateify
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -50,49 +50,40 @@
               
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a href="index.html"> Return to landing page</a>.
+                <a href="index.php"> Return to landing page</a>.
               </div>
 
               <div class="col text-center">
-                <a href="login.html"> Already have an account?</a>.
+                <a href="login.php"> Already have an account?</a>.
               </div>
 
                 <!-- signup form -->
-                <form action = "../APIs/SignUpConnection.php" method = "post">
+                <form action = "SignUpConnection.php" method = "post">
 
                     <!-- username field -->
                     <div class="form-group">
-                    <h5>Username</h5>
+                      <label for="exampleInputEmail1" >Username</label>
                       <input type="text" name = "username" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter username">
                     </div>
 
                     <!-- password field -->
                     <div class="form-group">
-                    <h5>Password</h5>
+                      <label for="exampleInputPassword1" >Password</label>
                       <input type="password" name = "password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
 
-                    <!-- account type -->
-                    <h5>Account Type</h5>
-                    <div>
-                      <input type="radio" name="account_type" value="user"
-                             checked>
-                      <label for="huey">Listener</label>
-                    </div>
-                    
-                    <div>
-                      <input type="radio" name="account_type" value="artist">
-                      <label for="dewey">Artist</label>
-                    </div>
-
-                    <div>
-                      <input type="radio" name="account_type" value="producer">
-                      <label for="louie">Producer</label>
-                    </div>
-
-                    <div>
-                      <input type="radio" name="account_type" value="admin">
-                      <label for="louie">Admin</label>
+                    <!-- account type dropdown -->
+                    <div class="dropdown">
+                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Account type
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                        <li><a href="#" name = "account_type" data-value="listener">Listener</a></li>
+                        <li><a href="#" name = "account_type" data-value="artist">Artist</a></li>
+                        <li><a href="#" name = "account_type" data-value="producer">Producer</a></li>
+                        <li><a href="#" name = "account_type" data-value="admin">Admin</a></li>
+                      </ul>
                     </div>
 
                     <!-- register button -->
