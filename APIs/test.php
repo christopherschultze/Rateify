@@ -6,7 +6,16 @@
     // createPlaylist($conn, 'playlist1', 'user1');
     // $result = searchSongsInAlbum($conn, 'album1');
     // addRating($conn, 'user1', 1, 'this shit is lit', 500);
-    increaseNoOfPlays($conn, 'SICKO MODE');
+    $result = getMaxID($conn);
+    // echo $result;
+    // if ($result->num_rows > 0) {
+    //     // output data of each row
+    //     while($row = $result->fetch_assoc()) {
+    //       echo "id: " . $row["max_id"].  "<br>";
+    //     }
+    //   } else {
+    //     echo "0 results";
+    //   }
     // header("Content-type: JSON");
     // $output = array();
     // $row_number = 0;
