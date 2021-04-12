@@ -59,17 +59,17 @@
               </div>
 
                 <!-- signup form -->
-                <form>
+                <form action="../APIs/loginConnection.php" method="post">
 
                     <!-- username field -->
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Username</label>
+                      <label for="exampleInputEmail1" name = "username">Username</label>
                       <input type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter username">
                     </div>
 
                     <!-- password field -->
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
+                      <label for="exampleInputPassword1" name = "password">Password</label>
                       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
 
