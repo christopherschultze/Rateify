@@ -3,20 +3,20 @@
     include 'logic.php';
     
     $conn = connect();
-    // echo "Connected Succesfully\n";
-    createSong($conn);
-    // deleteSong($conn, 0);
-    // $result = searchSong($conn, 0);
+    // createPlaylist($conn, 'playlist1', 'user1');
+    // $result = searchSongsInAlbum($conn, 'album1');
+    // addRating($conn, 'user1', 1, 'this shit is lit', 500);
+    increaseNoOfPlays($conn, 'SICKO MODE');
     // header("Content-type: JSON");
     // $output = array();
-    // $row = mysqli_fetch_array($result);
-    // $output[0]['id'] = $row['id'];
-    // $output[0]['album_name'] = $row['album_name'];
-    // $output[0]['no_of_plays'] = $row['no_of_plays'];
-    // $output[0]['duration'] = $row['duration'];
-    // $output[0]['name'] = $row['name'];
-    // $output[0]['date_created'] = $row['date_created'];
+    // $row_number = 0;
+    // // while($row = mysqli_fetch_array($result))
+    // $row = mysqli_fetch_array($result)
+    // // {
+    // $output[$row_number]['id'] = $row['id'];
+    //     // $row_number++;
+    // // }
 
     // echo json_encode($output, JSON_PRETTY_PRINT);
-    // closeCon($conn);
+    closeCon($conn);
 ?>
