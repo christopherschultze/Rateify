@@ -63,21 +63,21 @@
 
                     <!-- username field -->
                     <div class="form-group">
-                      <label for="exampleInputEmail1" name = "username">Username</label>
-                      <input type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter username">
+                      <label for="exampleInputEmail1" >Username</label>
+                      <input name = "username" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter username">
                     </div>
 
                     <!-- password field -->
                     <div class="form-group">
-                      <label for="exampleInputPassword1" name = "password">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <label for="exampleInputPassword1" >Password</label>
+                      <input name = "password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
 
 
                     <!-- login button -->
                     <!-- TODO: login button functionality-->
                     <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                        <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
+                        <a type= "submit" class="btn btn-primary" role="button" aria-pressed="true">
                           Login
                         </a>
                     </div>
