@@ -58,7 +58,7 @@
               </div>
 
                 <!-- signup form -->
-                <form action = "SignUpConnection.php" method = "post">
+                <form action = "../APIs/SignUpConnection.php" method = "post">
 
                     <!-- username field -->
                     <div class="form-group">
