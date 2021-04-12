@@ -20,8 +20,10 @@
             return $result;
         } 
 
-        function signup($conn, $username, $password, $type, $id) //done2
+        function signup($conn, $username, $password, $type) //done2
         {
+            $result = getMaxID($conn);
+            $id = $result + 1
             $sql = "INSERT INTO account (username, password, account_type, id)
                     VALUES('$username', '$password', '$type', '$id')";
             if ($conn->query($sql) === TRUE) {
@@ -31,6 +33,12 @@
             }
         }
 
+        function getMaxID($conn){
+            $sql = "SELECT MAX(id) FROM account";
+            $result = mysqli_query($conn,$sql);
+            
+            return $result;
+        }
         //queries in song table and searches for all tuples that matches the given songId
         //return the tuple of the song table if there is a matching tuple
         function searchSong($conn, $songId) // done2
