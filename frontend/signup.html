@@ -58,7 +58,7 @@
               </div>
 
                 <!-- signup form -->
-                <form action = "../APIs/SignUpConnection.php" method = "post">
+                <form method = "post">
 
                     <!-- username field -->
                     <div class="form-group">
@@ -78,7 +78,7 @@
                         Account type
                         <span class="caret"></span>
                       </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" name = "account_type">
                         <li><a href="#" data-value="listener">Listener</a></li>
                         <li><a href="#" data-value="artist">Artist</a></li>
                         <li><a href="#" data-value="producer">Producer</a></li>
@@ -89,7 +89,7 @@
                     <!-- register button -->
                     <!-- TODO: register button functionality-->
                     <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                        <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
+                        <a href="../APIs/SignUpConnection.php" class="btn btn-primary" role="button" aria-pressed="true">
                           Register
                         </a>
                     </div>
