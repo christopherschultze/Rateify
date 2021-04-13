@@ -67,7 +67,7 @@
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
               <form action="../APIs/DisplayPlaylistsConnection.php" method="post">
-              <button type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "Playlists">
+              <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "Playlists">
               </form>
 
               </div>
