@@ -8,6 +8,7 @@
         header("Location: login.php");
         die;
     }
+    
     else{
         $username = $_POST['username'];
         $password = $_POST['password'];
