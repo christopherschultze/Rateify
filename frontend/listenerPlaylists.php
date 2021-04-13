@@ -50,7 +50,7 @@
                 
               <!-- header -->
               <div class="col text-center">
-                <h1> Hello, {account.username}.</h1>
+                <h1> Hello <?php echo $_SESSION['username'] ?></h1>
               </div>
 
               <!-- header -->
@@ -68,19 +68,19 @@
                   Create a playlist
                 </a>
               </div>
-
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
-                  {playlist_1.playlist_name}
-                </a>
-                
-                    ...
-                 
-                  <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
-                    {playlist_n.playlist_name}
-                  </a>
-              </div>
+                  <?php
+                    $no_of_playlists = count($_SESSION['users_playlists']);
 
+                    $playlist_no = 0;
+
+                    while($no_of_playlists > $playlist_no){
+                        echo $_SESSION['users_playlists'][$playlist_no];
+                        $playlist_no++;
+                    } 
+                  ?>
+                </a>
               
               <div class=" mx-auto pt-5 text-center">
                 <h3> {playlist_1.playlist_name}</h3>
