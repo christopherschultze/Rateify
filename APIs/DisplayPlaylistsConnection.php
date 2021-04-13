@@ -16,7 +16,7 @@
 
             $_SESSION['users_playlists'] = $playlist_names;
         }
-            header("Location: ../frontend/listenerPlaylists.php")
+            header("Location: ../frontend/listenerPlaylists.php");
 
     closeCon($conn); 
 
