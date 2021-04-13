@@ -116,6 +116,12 @@
             return $result;
         }
 
+        function searchPlaylistsByUser($conn, $username){
+            $sql = "SELECT * FROM playlist WHERE user_username = '$username'";
+            $result = mysqli_query($conn, $sql);
+            
+            return $result;
+        }
         //queries all albums that are made by a specific artist by using the given $artistID
         //result contains all the album name taken from the matching tuples
         function searchArtistAlbum($conn, $artistID) // done2
