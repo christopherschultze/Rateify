@@ -69,18 +69,17 @@
                 </a>
               </div>
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
                   <?php
                     $no_of_playlists = count($_SESSION['users_playlists']);
 
                     $playlist_no = 0;
 
                     while($no_of_playlists > $playlist_no){
-                        echo $_SESSION['users_playlists'][$playlist_no];
-                        $playlist_no++;
+                        
+                      echo '<input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = $_SESSION["users_playlists"][$playlist_no] />';
+                      $playlist_no++;
                     } 
                   ?>
-                </a>
               
               <div class=" mx-auto pt-5 text-center">
                 <h3> {playlist_1.playlist_name}</h3>
