@@ -12,7 +12,7 @@
         if ($result->num_rows > 0) {
             $row = mysqli_fetch_assoc($result);
 
-            $_SESSION['account_type'] = $row['acount_type'];
+            $_SESSION['account_type'] = $row['account_type'];
             $_SESSION['username'] = $row['username'];
             $_SESSION['password'] = $row['password'];
             $_SESSION['id'] = $row['id'];

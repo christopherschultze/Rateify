@@ -51,7 +51,6 @@
               <div class="col text-center">
                 <h1> Hello, <?php echo $_SESSION['username'] ?></h1>
                 <p> <?php echo $_SESSION['username'] ?></p> 
-                <p><?php echo $_SESSION['password'] ?></p> 
                 <p><?php echo $_SESSION['account_type'] ?></p> 
               </div>
 
