@@ -49,10 +49,10 @@
             <div class="col-12 mx-auto my-auto text-center">
               
               <div class="col text-center">
-                <h1> Hello, $_SESSION['username']</h1>
-                <p>$_SESSION['username']</p> 
-                <p>$_SESSION['password']</p> 
-                <p>$_SESSION['account_type']</p> 
+                <h1> Hello, <?php $_SESSION['username'] ?></h1>
+                <p> <?php $_SESSION['username'] ?></p> 
+                <p><?php $_SESSION['password'] ?></p> 
+                <p><?php $_SESSION['account_type'] ?></p> 
               </div>
 
               <!-- header -->
