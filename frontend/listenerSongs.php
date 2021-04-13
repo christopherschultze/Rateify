@@ -58,11 +58,11 @@
               
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a href="listener.html"> Return to action page</a>.
+                <a href="listener.php"> Return to action page</a>.
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="SearchSong.html" class="btn btn-primary" role="button" aria-pressed="true">
+                <a href="SearchSong.php" class="btn btn-primary" role="button" aria-pressed="true">
                   Search Song
                 </a>
               </div>

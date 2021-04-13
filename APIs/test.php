@@ -6,16 +6,16 @@
     // createPlaylist($conn, 'playlist1', 'user1');
     // $result = searchSongsInAlbum($conn, 'album1');
     // addRating($conn, 'user1', 1, 'this shit is lit', 500);
-    $result = getMaxID($conn);
+    $result = searchSongByName($conn, 'Hello');
     // echo $result;
-    // if ($result->num_rows > 0) {
-    //     // output data of each row
-    //     while($row = $result->fetch_assoc()) {
-    //       echo "id: " . $row["max_id"].  "<br>";
-    //     }
-    //   } else {
-    //     echo "0 results";
-    //   }
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            echo "song name: " . $row["song.name"].  " -artist name: " . $row["a.artist_username"]. " -album name: " . $row["a.album_name"]. "<br>";
+        }
+      } else {
+        echo "0 results";
+      }
     // header("Content-type: JSON");
     // $output = array();
     // $row_number = 0;

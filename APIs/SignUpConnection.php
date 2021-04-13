@@ -10,7 +10,7 @@
 
     if(!empty($username) && !empty($password)){
         signup($conn,$username,$password,$account_type);
-        header("Location: ../frontend/login.php")
+        header("Location: ../frontend/login.php");
         die;
     }
 

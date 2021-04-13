@@ -56,11 +56,11 @@
               
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a href="index.html"> Return to landing page</a>.
+                <a href="index.php"> Return to landing page</a>.
               </div>
 
               <div class="col text-center">
-                <a href="signup.html"> Need to register for an account?</a>.
+                <a href="signup.php"> Need to register for an account?</a>.
               </div>
 
                 <!-- signup form -->
