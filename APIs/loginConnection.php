@@ -1,5 +1,6 @@
 <?php
 
+    session_start();
     include 'connection.php';
     include 'logic.php';    
 
@@ -10,6 +11,11 @@
         $result = login($conn,$username,$password);
         if ($result->num_rows > 0) {
             $row = mysqli_fetch_assoc($result);
+
+            $_SESSION['account_type'] = $row['acount_type'];
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['password'] = $row['password'];
+            $_SESSION['id'] = $row['id'];
             if($row['account_type'] == "user"){
                 header("Location: ../frontend/listener.php");
                 die;
@@ -26,7 +32,6 @@
                 header("Location: ../frontend/producer.php");
                 die;
             }
-            return $row;
         }
         else
         {
