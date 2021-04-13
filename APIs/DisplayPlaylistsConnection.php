@@ -14,7 +14,7 @@
                 $playlist_names[] = $row['name'];
             }
 
-            $_SESSION['users_playlists'] = $playlist_names[];
+            $_SESSION['users_playlists'] = $playlist_names;
         }
             header("Location: ../frontend/listenerPlaylists.php")
 
