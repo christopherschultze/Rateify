@@ -56,13 +56,13 @@
               </div>
               
 
-                <form>
+                <form action="../APIs/SearchSongsConnection.php" method="post">
                     <!-- Search field -->
                     <div class="form-group">
-                      <input type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Song Name">
+                      <input name = "song_name" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Song Name">
                     </div>
-                    <div style="position: absolute; left: -35px; top: 80px;"> 
-                        <img src="Images/magnifying glass.png" width="auto" height="40" />
+                    <div style="position: absolute; left: -35px; top: 80px;">  
+                    <button type = "submit"><img src="Images/magnifying glass.png" width="auto" height="41" /></button>
                     </div>
                    
                 </form>
