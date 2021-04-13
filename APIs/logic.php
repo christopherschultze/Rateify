@@ -73,7 +73,7 @@
         //result will contain all the songs that are in this specified playlist
         function searchSongsInPlaylist($conn, $playlist_name) //done2
         {
-            $sql = "SELECT * FROM playlist_song WHERE playlist_name = '$playlist_name'";
+            $sql = "SELECT song_id FROM playlist_song WHERE playlist_name = '$playlist_name'";
             $result = $conn->query($sql);
             
             return $result;

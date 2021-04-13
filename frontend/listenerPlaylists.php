@@ -1,5 +1,6 @@
 <?php
   session_start();
+  $_SESSION['curr_playlist'];
 ?>
 
 <!doctype html>
@@ -87,7 +88,7 @@
                 </form>
               
               <div class=" mx-auto pt-5 text-center">
-                <h3> <?php echo $_SESSION[$curr_playlist] ?></h3>
+                <h3> <?php echo $_SESSION['users_playlists'][$_SESSION['curr_playlist']] ?></h3>
                 <table class="table">
                     <thead>
                     <tr>
