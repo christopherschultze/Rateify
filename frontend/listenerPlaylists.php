@@ -69,6 +69,8 @@
                 </a>
               </div>
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+
+              <form action="../APIs/UpdatePlaylistDisplayConnection.php" method="post">
                   <?php
                     $no_of_playlists = count($_SESSION['users_playlists']);
 
@@ -76,15 +78,16 @@
 
                     while($no_of_playlists > $playlist_no){
                       $temp = $_SESSION["users_playlists"][$playlist_no];
-                      echo '<input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "'.$temp.'" />';
+                      echo '<input type = "submit" name = "clicked['.$playlist_no.']" class="btn btn-primary" role="button" aria-pressed="true" value = "'.$temp.'" />';
                       $playlist_no++;
                       echo "<br/>";
                       echo "<br/>";
                     } 
                   ?>
+                </form>
               
               <div class=" mx-auto pt-5 text-center">
-                <h3> {playlist_1.playlist_name}</h3>
+                <h3> <?php echo $_SESSION[$curr_playlist] ?></h3>
                 <table class="table">
                     <thead>
                     <tr>
