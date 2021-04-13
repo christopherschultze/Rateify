@@ -66,9 +66,10 @@
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="listenerPlaylists.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Playlists
-                </a>
+              <form action="../APIs/DisplayPlaylistsConnection.php" method="post">
+              <button type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "Playlists">
+              </form>
+
               </div>
 
               <!-- logout button-->
