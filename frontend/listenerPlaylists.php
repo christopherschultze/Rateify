@@ -75,9 +75,11 @@
                     $playlist_no = 0;
 
                     while($no_of_playlists > $playlist_no){
-                        
-                      echo '<input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = $_SESSION["users_playlists"][$playlist_no] />';
+                      $temp = $_SESSION["users_playlists"][$playlist_no];
+                      echo '<input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "'.$temp.'" />';
                       $playlist_no++;
+                      echo "<br/>";
+                      echo "<br/>";
                     } 
                   ?>
               

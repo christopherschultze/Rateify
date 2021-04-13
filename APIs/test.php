@@ -6,12 +6,12 @@
     // createPlaylist($conn, 'playlist1', 'user1');
     // $result = searchSongsInAlbum($conn, 'album1');
     // addRating($conn, 'user1', 1, 'this shit is lit', 500);
-    $result = searchSongByName($conn, 'Hello');
+    $result = searchPlaylistsByUser($conn, 'user1');
     // echo $result;
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            echo "song name: " . $row["song.name"].  " -artist name: " . $row["a.artist_username"]. " -album name: " . $row["a.album_name"]. "<br>";
+            echo "playlist name: " . $row["name"]. "<br>";
         }
       } else {
         echo "0 results";
