@@ -4,35 +4,34 @@
     include 'logic.php';    
 
     $conn = connect();
-    if(empty($username) || empty($password)){
-        header("Location: login.php");
-        die;
-    }
-    
-    else{
         $username = $_POST['username'];
         $password = $_POST['password'];
         
         $result = login($conn,$username,$password);
+        if ($result->num_rows > 0) {
             $row = mysqli_fetch_assoc($result);
             if($row['account_type'] == "user"){
-                header("Location: listener.php");
+                header("Location: ../frontend/listener.php");
                 die;
             }
             else if($row['account_type'] == "artist"){
-                header("Location: artist.php");
+                header("Location: ../frontend/artist.php");
                 die;
             }
             else if($row['account_type'] == "admin"){
-                header("Location: admin.php");
+                header("Location: ../frontend/admin.php");
                 die;
             }
             else if($row['account_type'] == "producer"){
-                header("Location: producer.php");
+                header("Location: ../frontend/producer.php");
                 die;
             }
             return $row;
-    }
+        }
+        else
+        {
+            header("Location: ../frontend/login.php");
+        }
 
     closeCon($conn); 
 

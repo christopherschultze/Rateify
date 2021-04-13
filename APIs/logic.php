@@ -7,12 +7,7 @@
         {
             $sql = "SELECT * FROM account WHERE username = '$username' AND password = '$pwd'";
             $result = mysqli_query($conn, $sql);
-            
-            if($result && mysqli_num_rows($result) > 0){
-                return $result;
-            }
-            header("Location: login.php");
-            die;
+            return $result;
         }
         //searches an account based on a given username
         //SQL queries the account table and returns all tuples that have matching username with the given $username
