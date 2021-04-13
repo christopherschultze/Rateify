@@ -49,10 +49,9 @@
             <div class="col-12 mx-auto my-auto text-center">
               
               <div class="col text-center">
-                <h1> Hello, {account.username}</h1>
-                <p>{account.username}</p> 
-                <p>{account.password}</p> 
-                <p>{account.account_type}</p> 
+              <h1> Hello <?php echo $_SESSION['username'] ?></h1>
+              <p> Username: <?php echo $_SESSION['username'] ?></p> 
+              <p> Account Type: <?php echo $_SESSION['account_type'] ?></p> 
               </div>
 
               <!-- header -->
