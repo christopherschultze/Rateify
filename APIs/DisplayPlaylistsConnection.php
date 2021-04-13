@@ -11,10 +11,12 @@
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                echo "name: " . $row["name"].  " -user: " . $row["user_username"]. "<br>";
+                $playlist_names[] = $row['name'];
             }
+
+            $_SESSION['users_playlists'] = $playlist_names[];
         }
-    }
+            header("Location: ../frontend/listenerPlaylists.php")
 
     closeCon($conn); 
 
