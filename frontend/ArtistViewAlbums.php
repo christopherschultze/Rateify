@@ -49,47 +49,22 @@
             <div class="col-12 mx-auto my-auto text-center">
               
               <div class="col text-center">
-              <h1> Hello <?php echo $_SESSION['username'] ?></h1>
-              <p> Username: <?php echo $_SESSION['username'] ?></p> 
-              <p> Account Type: <?php echo $_SESSION['account_type'] ?></p> 
+              <h1> View my albums. </h1>
               </div>
 
-              <!-- header -->
+              <!-- hyperlinks -->
               <div class="col text-center">
-                <h2> Please select an action. </h2>
+                <a href="artist.php"> Return to action page</a>.
               </div>
 
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="ArtistCreateSong.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Create a song
-                </a>
-              </div>
+              <!-- view song form -->
+              <form action="#" method="post">
 
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="ArtistViewSongs.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  View my songs
-                </a>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="ArtistCreateAlbum.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Create an album
-                </a>
-              </div>
-
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="ArtistViewAlbums.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  View my albums
-                </a>
-              </div>
-
-              <!-- logout button-->
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Logout
-                </a>
-              </div>
+                TODO: list of artist albums; upon clicking an album, get taken to a different screen where...
+                    (1) artist can see songs in the album, and 
+                    (2) add songs to the album
+                
+              </form>
               
             </div>
         </div>
