@@ -1,6 +1,5 @@
 <?php
   session_start();
-  $_SESSION['curr_playlist'];
 ?>
 
 <!doctype html>
@@ -101,22 +100,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Collard Greens</td>
-                        <td>ScHoolboy Q</td>
-                        <td>Oxymoron</td>
-                        <td>4:59</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Pumped Up Kicks</td>
-                        <td>Foster The People</td>
-                        <td>Torches</td>
-                        <td>3:59</td>
-                        <td>0</td>
-                    </tr>
+                    <?php
+                      $no_of_songs = count($_SESSION['songs_info']);
+                      $song_no = 0;
+
+                      while($no_of_songs > $song_no){
+                        $song_name = $_SESSION['songs_info'][$song_no]['name'];
+                        $album_name = $_SESSION['songs_info'][$song_no]['album_name'];
+                        $duration = $_SESSION['songs_info'][$song_no]['duration'];
+                        $no_of_plays = $_SESSION['songs_info'][$song_no]['$no_of_plays'];
+                        echo '<tr><th scope="row">1</th><td>'.$song_name.'</td><td>ARTIST NAME</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
+                        $song_no++;
+                      }
+                    ?>
                     </tbody>
                 </table>
             </div>
