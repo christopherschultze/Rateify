@@ -13,19 +13,23 @@
             if ($result->num_rows > 0){
                 while($row2 = $songInfo->fetch_assoc())
                 {
-                    $row2["name"]; //song name
-                    $row2["id"]; // song id
-                    $row2['album_name']; //album name
-                    $row2['no_of_plays']; //album name
-                    $row2['duration']; //album name
-                    $row2['date_created']; //album name
+                    $song_info[] = $row2;
+                    // $row2["name"]; //song name
+                    // $row2["id"]; // song id
+                    // $row2['album_name']; //album name
+                    // $row2['no_of_plays']; //album name
+                    // $row2['duration']; //album name
+                    // $row2['date_created']; //album name
                 }
             }
         }
-      } else {
-        echo "0 results";
-      }
-    // header("Location: ../frontend/listenerPlaylists.php");
+
+        $_SESSION['songs_info'] = $song_info;
+      } 
+
+
+    header("Location: ../frontend/listenerPlaylists.php");
+
 
     closeCon($conn); 
 
