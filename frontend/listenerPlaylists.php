@@ -103,6 +103,9 @@
                     </thead>
                     <tbody>
                     <?php
+
+                    if(!empty($_SESSION['songs_info']))
+                    {
                       $no_of_songs = count($_SESSION['songs_info']);
                       $song_no = 0;
 
@@ -114,6 +117,7 @@
                         echo '<tr><th scope="row">1</th><td>'.$song_name.'</td><td>ARTIST NAME</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
                         $song_no++;
                       }
+                    } 
                     ?>
                     </tbody>
                 </table>
