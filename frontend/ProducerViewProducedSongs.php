@@ -29,7 +29,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.html">
+            <a class="navbar-brand heading-black" href="index.php">
                 Rateify
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -49,34 +49,20 @@
             <div class="col-12 mx-auto my-auto text-center">
               
               <div class="col text-center">
-              <h1> Hello <?php echo $_SESSION['username'] ?></h1>
-              <p> Username: <?php echo $_SESSION['username'] ?></p> 
-              <p> Account Type: <?php echo $_SESSION['account_type'] ?></p> 
+              <h1> View my produced songs. </h1>
               </div>
 
-              <!-- header -->
+              <!-- hyperlinks -->
               <div class="col text-center">
-                <h2> Please select an action. </h2>
+                <a href="producer.php"> Return to action page</a>.
               </div>
 
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="ProducerProduceSong.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Produce a song
-                </a>
-              </div>
+              <!-- view song form -->
+              <form action="#" method="post">
 
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="ProducerViewProducedSongs.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  View my produced songs
-                </a>
-              </div>
-
-              <!-- logout button-->
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.html" class="btn btn-primary" role="button" aria-pressed="true">
-                  Logout
-                </a>
-              </div>
+                TODO: table of producers' songs
+                
+              </form>
               
             </div>
         </div>

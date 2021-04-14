@@ -29,7 +29,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.html">
+            <a class="navbar-brand heading-black" href="index.php">
                 Rateify
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -49,34 +49,25 @@
             <div class="col-12 mx-auto my-auto text-center">
               
               <div class="col text-center">
-              <h1> Hello <?php echo $_SESSION['username'] ?></h1>
-              <p> Username: <?php echo $_SESSION['username'] ?></p> 
-              <p> Account Type: <?php echo $_SESSION['account_type'] ?></p> 
+              <h1> Produce a song. </h1>
               </div>
 
-              <!-- header -->
+              <!-- hyperlinks -->
               <div class="col text-center">
-                <h2> Please select an action. </h2>
+                <a href="producer.php"> Return to action page</a>.
               </div>
 
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="ProducerProduceSong.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Produce a song
-                </a>
-              </div>
+              <!-- produce song form -->
+              <form action="#" method="post">
 
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="ProducerViewProducedSongs.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  View my produced songs
-                </a>
-              </div>
+                <p>
+                TODO: producer searches existing UNPRODUCED songs, selects a song, is displayed the song id
+                </p>
+                <p>
+                TODO: producer enters songid into textfield, presses submit button, and is set as the producer of the song.
+                </p>
 
-              <!-- logout button-->
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.html" class="btn btn-primary" role="button" aria-pressed="true">
-                  Logout
-                </a>
-              </div>
+            </form>
               
             </div>
         </div>
