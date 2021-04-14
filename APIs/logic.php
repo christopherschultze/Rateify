@@ -43,7 +43,7 @@
         //return the tuple of the song table if there is a matching tuple
         function searchSong($conn, $songId) // done2
         {
-            $sql = "SELECT * FROM spotify.song WHERE id = $songId";
+            $sql = "SELECT * FROM song AS songs, artist_song AS artists WHERE songs.id = artists.song_id AND songs.id = $songId";
             $result = $conn->query($sql);
             
             return $result;
