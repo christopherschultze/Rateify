@@ -37,6 +37,9 @@
     
             $_SESSION['songs_info'] = $song_info;
           } 
+          else{
+              $_SESSION['songs_info'] = null;
+          }
 
         header("Location: ../frontend/listenerPlaylists.php");
 
