@@ -114,7 +114,8 @@
                         $album_name = $_SESSION['songs_info'][$song_no]['album_name'];
                         $duration = $_SESSION['songs_info'][$song_no]['duration'];
                         $no_of_plays = $_SESSION['songs_info'][$song_no]['no_of_plays'];
-                        echo '<tr><th scope="row">1</th><td>'.$song_name.'</td><td>ARTIST NAME</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
+                        $id = $_SESSION['songs_info'][$song_no]['id'] + 1;
+                        echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name.'</td><td>ARTIST NAME</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
                         $song_no++;
                       }
                     } 
