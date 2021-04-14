@@ -5,8 +5,10 @@
 
     $conn = connect();
     $username = $_SESSION['username'];
-    
+    $song_info = array();
+    // $artists = array();
     $_SESSION['curr_playlist'] = 0;
+    $_SESSION['artist_name'] = 0;
     $result = searchPlaylistsByUser($conn,$username);
 
         if ($result->num_rows > 0) {
@@ -24,13 +26,29 @@
                 if ($result->num_rows > 0){
                     while($row2 = $songInfo->fetch_assoc())
                     {
-                        $song_info[] = $row2;
+                         array_push($song_info, $row2);
+                         $artist = searchArtistBySong($conn, $row['id']);
+                        if($artist -> num_rows > 0)
+                        {
+                            $row_number = 0;
+                            while($row3 = $artist->fetch_assoc())
+                            {
+                                // array_push($artists, $row3['artist_username'];
+                                $_SESSION['artist_name'][$row_number] = $row3['artist_username'];
+                                $row_number++;
+                                // array_push($artists, $row2['artist_username']);
+                            }
+                        }
+                        //  $artist = searchArtistBySong($conn,$row2['id']);
+                        // $row3 = $artist->fetch_assoc();
+                        // array_push($song_info,$row3);
                         // $row2["name"]; //song name
                         // $row2["id"]; // song id
                         // $row2['album_name']; //album name
                         // $row2['no_of_plays']; //album name
                         // $row2['duration']; //album name
                         // $row2['date_created']; //album name
+                        
                     }
                 }
             }
@@ -39,6 +57,7 @@
           } 
           else{
               $_SESSION['songs_info'] = NULL;
+              $_SESSION['artist_name'] = NULL;
           }
 
         header("Location: ../frontend/listenerPlaylists.php");

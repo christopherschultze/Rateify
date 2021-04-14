@@ -101,8 +101,15 @@
         function searchSongByName($conn, $song_name) //done2
         {
             $sql = "SELECT * FROM song WHERE name = '$song_name'";
-            $result = $conn->query($sql);
+            $result = mysqli_query($conn, $sql);
             
+            return $result;
+        }
+
+        function searchArtistBySong($conn, $songID)
+        {
+            $sql = "SELECT * FROM artist_song WHERE song_id = $songID";
+            $result = mysqli_query($conn, $sql);
             return $result;
         }
 
