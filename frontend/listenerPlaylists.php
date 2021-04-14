@@ -98,10 +98,12 @@
                         <th scope="col">Artist</th>
                         <th scope="col">Album</th>
                         <th scope="col">Duration</th>
-                        <th scope="col">Plays</th>
+                        <th scope="col">No_of_Plays</th>
+                        <th scope="col">Play Song</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <form action="../APIs/UpdatePlaysConnection.php" method="post">
                     <?php
                     if(!empty($_SESSION['songs_info']))
                     {
@@ -113,14 +115,15 @@
                         $album_name = $_SESSION['songs_info'][$song_no]['album_name'];
                         $duration = $_SESSION['songs_info'][$song_no]['duration'];
                         $no_of_plays = $_SESSION['songs_info'][$song_no]['no_of_plays'];
-                        $artist = $_SESSION['artist_name'][0];
+                        //$artist = $_SESSION['artist_name'][0];
                         $id = 1;
-                        echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name.'</td><td>'.$artist.'</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
+                        echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name.'</td><td>ARTIST NAME</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td> <td> <div style="position: relative;"><button style="background-color: rgb(0, 0, 0); border: black;" type = "submit"><img src="Images/Play-Button-PNG-Image.png" width="auto" height="41" /></button></div></td></tr>';
                         $song_no++;
                         $id++;
                       }
                     }
                     ?>
+                    </form>
                     </tbody>
                 </table>
             </div>
