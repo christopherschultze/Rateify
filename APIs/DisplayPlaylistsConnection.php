@@ -6,7 +6,7 @@
     $conn = connect();
     $username = $_SESSION['username'];
     
-    $_SESSION['curr_playlist'];
+    $_SESSION['curr_playlist'] = 0;
     $result = searchPlaylistsByUser($conn,$username);
 
         if ($result->num_rows > 0) {
@@ -16,7 +16,6 @@
 
             $_SESSION['users_playlists'] = $playlist_names;
         }
-
         $result = searchSongsInPlaylist($conn, $_SESSION['users_playlists'][$_SESSION['curr_playlist']]);
         if ($result->num_rows > 0) {
             // output data of each row
