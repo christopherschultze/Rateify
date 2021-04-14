@@ -1,5 +1,7 @@
 <?php
   session_start();
+  $_SESSION['random'] = array();
+  $_SESSION['temp'] = 0;
   // $_SESSION["curr_playlist"];
   // $_SESSION['songs_info'] = 0;
 ?>
@@ -105,22 +107,65 @@
                     <tbody>
                     <form action="../APIs/UpdatePlaysConnection.php" method="post">
                     <?php
+                    include '../APIs/logic.php';
+                    include '../APIs/connection.php';
                     if(!empty($_SESSION['songs_info']))
                     {
+                      $conn = connect();
                       $no_of_songs = count($_SESSION['songs_info']);
                       $song_no = 0;
-
+                      
                       while($no_of_songs > $song_no){
+                        $artists = array();
+                        $song_id = $_SESSION['songs_info'][$song_no]['id'];
                         $song_name = $_SESSION['songs_info'][$song_no]['name'];
                         $album_name = $_SESSION['songs_info'][$song_no]['album_name'];
                         $duration = $_SESSION['songs_info'][$song_no]['duration'];
                         $no_of_plays = $_SESSION['songs_info'][$song_no]['no_of_plays'];
+                        $artist = searchArtistBySong($conn, $song_id);
+                        // echo $song_id;
+                        // echo "<br>";
+                        if($artist->num_rows > 0)
+                        {
+                          while($row3 = $artist->fetch_assoc()) {
+                            array_push($artists, $row3['artist_username']);
+                            // echo $row3['artist_username'];
+                          }
+                          
+                        }
                         //$artist = $_SESSION['artist_name'][0];
+                        // echo $song_id;
+                        // echo "<br>";
                         $id = 1;
-                        echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name.'</td><td>ARTIST NAME</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td> <td> <div style="position: relative;"><button style="background-color: rgb(0, 0, 0); border: black;" type = "submit"><img src="Images/Play-Button-PNG-Image.png" width="auto" height="41" /></button></div></td></tr>';
+                        $iteration = 0;
+                        // foreach($artists as $a)
+                        // {
+                        //   echo $a;
+                        //   echo  " ";
+                        // }
+                        // echo "<br>";
+                        // echo sizeof($artists);
+                        // echo "<br>";
+                        foreach($artists as $a)
+                        {
+                          if($iteration == 0)
+                          {
+                            echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name.'</td><td>'.$a.'</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td>  <td> <div style="position: relative;"><button name='.$song_id.' style="background-color: rgb(0, 0, 0); border: black;" type = "submit"><img src="Images/Play-Button-PNG-Image.png" width="auto" height="41" /></button></div></td><td><input type="hidden" name=\"$temp\" value='.$song_id.'/></td></tr>';
+                          }
+                          else
+                          {
+                            echo '<tr><th scope="row"></th><td></td><td>'.$a.'</td><td></td><td></td><td></td></tr>';
+                          }
+                          $iteration++;
+                        }
+                        
+                        // echo "<br>";
+                        // $_SESSION['temp'] = $song_no;
                         $song_no++;
                         $id++;
+                        reset($artists);
                       }
+                      // echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name.'</td><td>ARTIST NAME</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td>  <td> <div style="position: relative;"><button name='.$song_id.' style="background-color: rgb(0, 0, 0); border: black;" type = "submit"><img src="Images/Play-Button-PNG-Image.png" width="auto" height="41" /></button></div></td><td><input type="hidden" name='.$_SESSION['temp'].' value='.$song_id.'/></td></tr>';
                     }
                     ?>
                     </form>
