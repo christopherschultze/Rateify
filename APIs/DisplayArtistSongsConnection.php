@@ -11,7 +11,7 @@
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $songInfo = searchSong($conn, $row['song_id']);
-                if ($result->num_rows > 0){
+                if ($songInfo->num_rows > 0){
                     while($row2 = $songInfo->fetch_assoc())
                     {
                         $artists_song_info[] = $row2;
