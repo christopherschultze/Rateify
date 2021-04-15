@@ -27,7 +27,6 @@
       }
 
     header("Location: ../frontend/listenerPlaylists.php");
-    header("Location: ../frontend/listenerPlaylists.php");
 
     closeCon($conn); 
 
