@@ -59,7 +59,6 @@
         </form>
     </div>
     <div style="position: absolute; top:200px;">
-                <h3> <?php if(!empty($_SESSION['users_playlists'])){echo $_SESSION['users_playlists'][$_SESSION['curr_playlist']];} ?></h3>
                 <table style = "width: 1150px;" class="table">
                     <thead>
                     <tr>
