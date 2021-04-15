@@ -69,7 +69,6 @@
                     </thead>
                     <tbody>
               <!-- view song form -->
-              <form action="#" method="post">
                   <?php
 
                     if(!empty($_SESSION['artists_songs']))
@@ -91,7 +90,6 @@
                        
                     }
                   ?> 
-              </form>
               </tbody>
             </table>
             </div>
