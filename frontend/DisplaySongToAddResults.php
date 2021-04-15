@@ -49,7 +49,7 @@
     <div class="container">
     <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
         
-        <form action="../APIs/SearchSongsConnection.php" method="post">
+        <form action="../APIs/SearchSongsToAddConnection.php" method="post">
         <div style="position: absolute; top: 75px; width:700px;"class="form-group">
             <input name = "song_name" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Song Name">
             <div style= "position: absolute; right: 0px; top: 0px;">  
@@ -73,7 +73,7 @@
                     </thead>
                     <tbody>
                     <!-- view song form -->
-                    <form action="../APIs/AddSongToPlaylist.php" method="post">
+                    <form action="../APIs/AddSongToPlaylistConnection.php" method="post">
                     <?php
                     
                     if(!empty($_SESSION['song_results']))
@@ -89,7 +89,7 @@
                             $artist_name = $_SESSION['song_results'][$song_no]['artist_username'];
                             $song_id =  $_SESSION['song_results'][$song_no]['id'];
                             
-                            echo '<tr><th style = "width: 150px;" scope="row">'.$id.'</th><td><input name = "album_name['.$song_id.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$song_name.'"></td><td> '.$artist_name.'<td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr> ';
+                            echo '<tr><th style = "width: 150px;" scope="row">'.$id.'</th><td><input name = "song_adding['.$song_id.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$song_name.'"></td><td> '.$artist_name.'<td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr> ';
 
                             $id++;
                             $song_no++;
