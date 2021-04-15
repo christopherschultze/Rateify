@@ -1,5 +1,8 @@
 <?php
-
+        function hello2($conn, $message)
+        {
+            echo $message;
+        }
         //logs in with provided user info and password, then use SQL query to query database 
         //after qurerying return the result
         function login($conn, $username, $pwd) // done2
@@ -34,6 +37,13 @@
 
         function getMaxID($conn){
             $sql = "SELECT MAX(id) AS max_id FROM account";
+            $result = mysqli_query($conn,$sql);
+            
+            return $result;
+        }
+
+        function getMaxSongID($conn){
+            $sql = "SELECT MAX(id) AS max_id FROM song";
             $result = mysqli_query($conn,$sql);
             
             return $result;

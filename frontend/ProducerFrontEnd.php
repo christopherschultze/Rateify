@@ -1,6 +1,8 @@
 <?php
   session_start();
+  $_SESSION['playlist_success'];
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -8,9 +10,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Admin</title>
-    <meta name="description"
-          content="Rateify is a music service that allows users to rate songs"/>
+    <title>Produce a track...</title>
 
     <!--Inter UI font-->
     <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet">
@@ -29,7 +29,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.php">
+            <a class="navbar-brand heading-black" href="index.html">
                 Rateify
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -42,48 +42,53 @@
     </div>
 </section>
 
-<!-- listener functionality -->
+<!--signup functionality-->
 <section class="py-7 py-md-0 bg-hero" id="login">
     <div class="container">
         <div class="row vh-md-100">
-            <div class="col-12 mx-auto my-auto text-center">
-              
-              <div class="col text-center">
-              <h1> Hello <?php echo $_SESSION['username'] ?></h1>
-              <p> Username: <?php echo $_SESSION['username'] ?></p> 
-              <p> Account Type: <?php echo $_SESSION['account_type'] ?></p> 
-              </div>
-
+            <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
+                
               <!-- header -->
               <div class="col text-center">
-                <h2> Please select an action. </h2>
+                <h1> Upload your Track</h1>
               </div>
 
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="SearchSongAdmin.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Search Song
+                <!-- signup form -->
+                <form action="../APIs/ProducerConnection.php" method="post">
+
+                    <!-- playlist name field -->
+                    <div class="form-group">
+                      <label for="exampleInputEmail1" >Song Name</label>
+                      <input name = "song_name" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter song name">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1" >Duration</label>
+                      <input name = "track_duration" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter track duration">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1" >Date</label>
+                      <input name = "date" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter date">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1" >Producer Name (yours or any collaborators)</label>
+                      <input name = "producer_name" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter producer name">
+                    </div>
+
+                    <!-- login button -->
+                    <!-- TODO: login button functionality-->
+                    <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                      <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "PUBLISH!">
+                    </div>
+                </form>
+                <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                <a href="producer.php" class="btn btn-primary" role="button" aria-pressed="true">
+                  Go Back <-
                 </a>
               </div>
 
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="DeleteSong.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Delete song
-                </a>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="DeleteRating.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Delete rating
-                </a>
-              </div>
-
-              <!-- logout button-->
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Logout
-                </a>
-              </div>
-              
             </div>
         </div>
     </div>

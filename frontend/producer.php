@@ -60,8 +60,8 @@
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
-                  Produce song
+                <a href="ProducerFrontEnd.php" class="btn btn-primary" role="button" aria-pressed="true">
+                  Produce Tracks
                 </a>
               </div>
 
