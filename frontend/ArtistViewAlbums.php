@@ -69,6 +69,9 @@
                     </thead>
                     <tbody>
               <!-- view song form -->
+
+              <!--NEED TO EDIT WHERE THIS GOES WHEN CLICKING ALBUM NAME-->
+              <form action="../APIs/test.php" method="post">
                   <?php
 
                     if(!empty($_SESSION['artists_albums']))
@@ -81,14 +84,16 @@
                             $no_of_songs = $_SESSION['artists_albums'][$album_no]['no_of_songs'];
                             $album_name = $_SESSION['artists_albums'][$album_no]['name'];
                             
-                            echo '<tr><th scope="row">'.$id.'</th><td>'.$album_name.'</td><td>'.$no_of_songs.'</td><td>'.$duration.'</td></tr>';
-
+                            
+                            echo '<tr><th scope="row">'.$id.'</th><td><input type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$album_name.'"></td><td>'.$no_of_songs.'</td><td>'.$duration.'</td></tr>';
+                            
                             $id++;
                             $album_no++;
                         }
                        
                     }
                   ?> 
+                  </form>
               </tbody>
             </table>
               
