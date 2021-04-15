@@ -76,6 +76,8 @@
 
               <form action="../APIs/UpdatePlaylistDisplayConnection.php" method="post">
                   <?php
+                  if(!empty($_SESSION['users_playlists']))
+                  {
                     $no_of_playlists = count($_SESSION['users_playlists']);
 
                     $playlist_no = 0;
@@ -87,11 +89,16 @@
                       echo "<br/>";
                       echo "<br/>";
                     } 
+                  }else
+                  {
+                    echo "YOU CURRENTLY HAVE NO PLAYLISTS!";
+                  }
+   
                   ?>
                 </form>
               
               <div class=" mx-auto pt-5 text-center">
-                <h3> <?php echo $_SESSION['users_playlists'][$_SESSION['curr_playlist']] ?></h3>
+                <h3> <?php if(!empty($_SESSION['users_playlists'])){echo $_SESSION['users_playlists'][$_SESSION['curr_playlist']];} ?></h3>
                 <table class="table">
                     <thead>
                     <tr>
@@ -123,29 +130,17 @@
                         $duration = $_SESSION['songs_info'][$song_no]['duration'];
                         $no_of_plays = $_SESSION['songs_info'][$song_no]['no_of_plays'];
                         $artist = searchArtistBySong($conn, $song_id);
-                        // echo $song_id;
-                        // echo "<br>";
                         if($artist->num_rows > 0)
                         {
                           while($row3 = $artist->fetch_assoc()) {
                             array_push($artists, $row3['artist_username']);
-                            // echo $row3['artist_username'];
+            
                           }
                           
                         }
-                        //$artist = $_SESSION['artist_name'][0];
-                        // echo $song_id;
-                        // echo "<br>";
                         $id = 1;
                         $iteration = 0;
-                        // foreach($artists as $a)
-                        // {
-                        //   echo $a;
-                        //   echo  " ";
-                        // }
-                        // echo "<br>";
-                        // echo sizeof($artists);
-                        // echo "<br>";
+              
                         foreach($artists as $a)
                         {
                           if($iteration == 0)
@@ -159,13 +154,11 @@
                           $iteration++;
                         }
                         
-                        // echo "<br>";
-                        // $_SESSION['temp'] = $song_no;
+                     
                         $song_no++;
                         $id++;
                         reset($artists);
                       }
-                      // echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name.'</td><td>ARTIST NAME</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td>  <td> <div style="position: relative;"><button name='.$song_id.' style="background-color: rgb(0, 0, 0); border: black;" type = "submit"><img src="Images/Play-Button-PNG-Image.png" width="auto" height="41" /></button></div></td><td><input type="hidden" name='.$_SESSION['temp'].' value='.$song_id.'/></td></tr>';
                     }
                     ?>
                     </form>
@@ -174,7 +167,16 @@
             </div>
 
             </div>
+            <?php
+              echo "<br>";
+              echo "<br>";
+              echo "<br>";
+              echo '<div><a href="SearchSongToAdd.php"> +Add Song To Playlist</a>.</div>';
+              echo "<br>";
+              echo "<br>";
+            ?>
         </div>
+       
     </div>
 </section>
 
