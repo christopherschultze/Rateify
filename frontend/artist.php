@@ -58,9 +58,19 @@
               <div class="col text-center">
                 <h2> Please select an action. </h2>
               </div>
-              <form action="../APIs/DisplayArtistSongsConnection.php" method="post">
-              <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "View My Songs">
-              </form>
+
+              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                <form action="../APIs/DisplayArtistSongsConnection.php" method="post">
+                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "View My Songs">
+                </form>
+              </div>
+
+              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                <form action="../APIs/DisplayArtistAlbumsConnection.php" method="post">
+                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "View My Albums">
+                </form>
+              </div>
+
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
                   Create a new Song
