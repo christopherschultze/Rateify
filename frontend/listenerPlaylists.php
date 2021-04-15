@@ -96,10 +96,10 @@
    
                   ?>
                 </form>
-              
-              <div class=" mx-auto pt-5 text-center">
+            </div>
+            <div class=" mx-auto pt-5 text-center">
                 <h3> <?php if(!empty($_SESSION['users_playlists'])){echo $_SESSION['users_playlists'][$_SESSION['curr_playlist']];} ?></h3>
-                <table class="table">
+                <table style = "width: 800px;" class="table">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -121,7 +121,7 @@
                       $conn = connect();
                       $no_of_songs = count($_SESSION['songs_info']);
                       $song_no = 0;
-                      
+                      $id = 1;
                       while($no_of_songs > $song_no){
                         $artists = array();
                         $song_id = $_SESSION['songs_info'][$song_no]['id'];
@@ -138,14 +138,14 @@
                           }
                           
                         }
-                        $id = 1;
+                       
                         $iteration = 0;
               
                         foreach($artists as $a)
                         {
                           if($iteration == 0)
                           {
-                            echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name.'</td><td>'.$a.'</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td>  <td> <div style="position: relative;"><button name='.$song_id.' style="background-color: rgb(0, 0, 0); border: black;" type = "submit"><img src="Images/Play-Button-PNG-Image.png" width="auto" height="41" /></button></div></td><td><input type="hidden" name=\"$temp\" value='.$song_id.'/></td></tr>';
+                            echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name.'</td><td>'.$a.'</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td>  <td> <div style="position: relative;"><button name = "song_played['.$song_id.']" style="background-color: rgb(0, 0, 0); border: black;" type = "submit"><img src="Images/Play-Button-PNG-Image.png" width="auto" height="41" /></button></div></td></tr>';
                           }
                           else
                           {
@@ -164,8 +164,6 @@
                     </form>
                     </tbody>
                 </table>
-            </div>
-
             </div>
             <?php
               echo "<br>";
