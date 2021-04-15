@@ -128,11 +128,11 @@
             
             return $result;
         }
-        //queries all albums that are made by a specific artist by using the given $artistID
+        //queries all albums that are made by a specific artist by using the given $artistusername
         //result contains all the album name taken from the matching tuples
         function searchArtistAlbum($conn, $username) // done2
         {
-            $sql = "SELECT album_name FROM artist_album WHERE artist_username = $username";
+            $sql = "SELECT * FROM artist_album WHERE artist_username = '$username'";
             $result = mysqli_query($conn, $sql);
             
             return $result;
