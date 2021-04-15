@@ -72,11 +72,6 @@
                       <input name = "date" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter date">
                     </div>
 
-                    <div class="form-group">
-                      <label for="exampleInputEmail1" >Producer Name (yours or any collaborators)</label>
-                      <input name = "producer_name" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter producer name">
-                    </div>
-
                     <!-- login button -->
                     <!-- TODO: login button functionality-->
                     <div class="col-md-8 col-12 mx-auto pt-5 text-center">

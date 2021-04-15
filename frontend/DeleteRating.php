@@ -50,7 +50,7 @@
                 
               <!-- header -->
               <div class="col text-center">
-                <h1> Select a song</h1>
+                <h1> Delete Ratingzzzzzzzz</h1>
               </div>
 
                 <!-- signup form -->

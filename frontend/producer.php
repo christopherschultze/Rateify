@@ -29,7 +29,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.html">
+            <a class="navbar-brand heading-black" href="index.php">
                 Rateify
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -67,7 +67,7 @@
 
               <!-- logout button-->
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.html" class="btn btn-primary" role="button" aria-pressed="true">
+                <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
                   Logout
                 </a>
               </div>
