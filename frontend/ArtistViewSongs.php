@@ -57,13 +57,43 @@
                 <a href="artist.php"> Return to action page</a>.
               </div>
 
+              <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Song</th>
+                        <th scope="col">Album</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">No_of_Plays</th>
+                    </tr>
+                    </thead>
+                    <tbody>
               <!-- view song form -->
               <form action="#" method="post">
+                  <?php
 
-                TODO: table of artists' songs
-                
+                    if(!empty($_SESSION['artists_songs']))
+                    {
+                        $no_of_songs = count($_SESSION['artists_songs']);
+                        $song_no = 0;
+                        $id = 1;
+                        while($no_of_songs > $song_no){
+                            $song_name = $_SESSION['artists_songs'][$song_no]['name'];
+                            $duration = $_SESSION['artists_songs'][$song_no]['duration'];
+                            $no_of_plays = $_SESSION['artists_songs'][$song_no]['no_of_plays'];
+                            $album_name = $_SESSION['artists_songs'][$song_no]['album_name'];
+                            
+                            echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name.'</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
+
+                            $id++;
+                            $song_no++;
+                        }
+                       
+                    }
+                  ?> 
               </form>
-              
+              </tbody>
+            </table>
             </div>
         </div>
     </div>
