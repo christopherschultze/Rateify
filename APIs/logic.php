@@ -272,9 +272,9 @@
             makeChangestoPlaylist($conn, $p_name, $songId);
         }
 
-        function increaseNoOfPlays($conn, $songName) //done2
+        function increaseNoOfPlays($conn, $songId) //done2
         {
-            $sql = "UPDATE song SET no_of_plays = no_of_plays + 1 WHERE name = '$songName' ";
+            $sql = "UPDATE song SET no_of_plays = no_of_plays + 1 WHERE id = '$songId' ";
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
             } else {
