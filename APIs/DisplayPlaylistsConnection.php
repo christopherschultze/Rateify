@@ -9,6 +9,7 @@
     // $artists = array();
     $_SESSION['curr_playlist'] = 0;
     $_SESSION['artist_name'] = 0;
+    $_SESSION['users_playlists'] = 0;
     $result = searchPlaylistsByUser($conn,$username);
 
         if ($result->num_rows > 0) {
@@ -17,6 +18,9 @@
             }
 
             $_SESSION['users_playlists'] = $playlist_names;
+        }
+        else{
+            $_SESSION['users_playlists'] = NULL;
         }
         $result = searchSongsInPlaylist($conn, $_SESSION['users_playlists'][$_SESSION['curr_playlist']]);
         if ($result->num_rows > 0) {
