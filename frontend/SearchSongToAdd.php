@@ -56,7 +56,7 @@
               </div>
               
 
-                <form action="../APIs/SearchSongsConnection.php" method="post">
+                <form action="../APIs/SearchSongsToAddConnection.php" method="post">
                     <!-- Search field -->
                     <div class="form-group">
                       <input name = "song_name" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Song Name">
