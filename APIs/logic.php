@@ -1,5 +1,8 @@
 <?php
-
+        function hello2($conn, $message)
+        {
+            echo $message;
+        }
         //logs in with provided user info and password, then use SQL query to query database 
         //after qurerying return the result
         function login($conn, $username, $pwd) // done2
@@ -34,6 +37,13 @@
 
         function getMaxID($conn){
             $sql = "SELECT MAX(id) AS max_id FROM account";
+            $result = mysqli_query($conn,$sql);
+            
+            return $result;
+        }
+
+        function getMaxSongID($conn){
+            $sql = "SELECT MAX(id) AS max_id FROM song";
             $result = mysqli_query($conn,$sql);
             
             return $result;
@@ -130,9 +140,9 @@
         }
         //queries all albums that are made by a specific artist by using the given $artistID
         //result contains all the album name taken from the matching tuples
-        function searchArtistAlbum($conn, $artistID) // done2
+        function searchArtistAlbum($conn, $username) // done2
         {
-            $sql = "SELECT album_name FROM artist_album WHERE artist_id = $artistID";
+            $sql = "SELECT album_name FROM artist_album WHERE artist_username = '$username'";
             $result = mysqli_query($conn, $sql);
             
             return $result;

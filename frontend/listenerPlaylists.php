@@ -68,7 +68,7 @@
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
+                <a href="createPlaylist.php" class="btn btn-primary" role="button" aria-pressed="true">
                   Create a playlist
                 </a>
               </div>
@@ -154,7 +154,7 @@
                           }
                           else
                           {
-                            echo '<tr><th scope="row"></th><td></td><td>'.$a.'</td><td></td><td></td><td></td></tr>';
+                            echo '<tr><th></th><td></td><td>'.$a.'</td><td></td><td></td><td></td></tr>';
                           }
                           $iteration++;
                         }

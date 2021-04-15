@@ -8,7 +8,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Admin</title>
+    <title>Rateify - Listener Page</title>
     <meta name="description"
           content="Rateify is a music service that allows users to rate songs"/>
 
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="css/default.css" id="theme-color">
 </head>
 <body>
+
 
 <!--navigation-->
 <section class="smart-scroll">
@@ -42,59 +43,43 @@
     </div>
 </section>
 
-<!-- listener functionality -->
+
+<!--Search Song-->
 <section class="py-7 py-md-0 bg-hero" id="login">
     <div class="container">
         <div class="row vh-md-100">
-            <div class="col-12 mx-auto my-auto text-center">
-              
-              <div class="col text-center">
-              <h1> Hello <?php echo $_SESSION['username'] ?></h1>
-              <p> Username: <?php echo $_SESSION['username'] ?></p> 
-              <p> Account Type: <?php echo $_SESSION['account_type'] ?></p> 
-              </div>
-
+            <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
+                
               <!-- header -->
               <div class="col text-center">
-                <h2> Please select an action. </h2>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="SearchSongAdmin.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Search Song
-                </a>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="DeleteSong.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Delete song
-                </a>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="DeleteRating.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Delete rating
-                </a>
-              </div>
-
-              <!-- logout button-->
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Logout
-                </a>
+                <h2> Search For a Song.</h2>
               </div>
               
+
+                <form action="../APIs/SearchSongsConnection.php" method="post">
+                    <!-- Search field -->
+                    <div class="form-group">
+                      <input name = "song_name" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Song Name">
+                    </div>
+                    <div style="position: absolute; right: 15px; top: 76.5px;">  
+                    <button type = "submit"><img src="Images/magnifying glass.png" width="auto" height="41" /></button>
+                    </div>
+                   
+                </form>
+
+                <!--GO Back Button [idk how to move it further down]-->
+                <div class = "positioning">
+                    <a href="admin.php" class="btn btn-primary" role="button" aria-pressed="true">
+                        <- Go Back
+                      </a>
+                </div>
             </div>
         </div>
+       
+       
     </div>
+   
 </section>
-
-<!--scroll to top-->
-<div class="scroll-top">
-    <i class="fa fa-angle-up" aria-hidden="true"></i>
-</div>
-
-
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
