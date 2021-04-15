@@ -62,7 +62,7 @@
                       <input name = "song_name" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Song Name">
                     </div>
                     <div style="position: absolute; right: 15px; top: 76.5px;">  
-                    <button type = "submit"><img src="Images/magnifying glass.png" width="auto" height="41" /></button>
+                    <button style="background-color: white; border: white;" type = "submit"><img src="Images/magnifying glass.png" width="auto" height="41" /></button>
                     </div>
                    
                 </form>
