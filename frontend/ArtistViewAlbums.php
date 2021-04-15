@@ -73,18 +73,18 @@
 
                     if(!empty($_SESSION['artists_albums']))
                     {
-                        $no_of_songs = count($_SESSION['albums']);
+                        $no_of_songs = count($_SESSION['artists_albums']);
                         $album_no = 0;
                         $id = 1;
                         while($no_of_songs > $album_no){
-                            $duration = $_SESSION['artists_songs'][$album_no]['duration'];
-                            $no_of_songs = $_SESSION['artists_songs'][$album_no]['no_of_songs'];
-                            $album_name = $_SESSION['artists_songs'][$album_no]['name'];
+                            $duration = $_SESSION['artists_albums'][$album_no]['duration'];
+                            $no_of_songs = $_SESSION['artists_albums'][$album_no]['no_of_songs'];
+                            $album_name = $_SESSION['artists_albums'][$album_no]['name'];
                             
-                            echo '<tr><th scope="row">'.$id.'</th><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_songs.'</td></tr>';
+                            echo '<tr><th scope="row">'.$id.'</th><td>'.$album_name.'</td><td>'.$no_of_songs.'</td><td>'.$duration.'</td></tr>';
 
                             $id++;
-                            $song_no++;
+                            $album_no++;
                         }
                        
                     }
