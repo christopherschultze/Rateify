@@ -30,6 +30,7 @@
 
         function signup($conn, $username, $password, $type) //done2
         {
+            $notify = 0;
             $result = getMaxID($conn);
             $row = $result->fetch_assoc(); 
             $id = $row["max_id"] + 1;
@@ -41,8 +42,10 @@
             if ($stmt->execute() === TRUE) {
                 echo "New record created successfully";
             } else {
+                $notify = 2;
              echo "Error: " . $sql . "<br>" . $conn->error;
             }
+            return $notify;
         }
 
         function getMaxID($conn){
@@ -486,8 +489,10 @@
             if ($stmt->execute() === TRUE) {
                 echo "New record created successfully";
             } else {
+                $notify = 2;
              echo "Error: " . $sql . "<br>" . $conn->error;
             }  
+            return $notify;
         }
 
         // function that is called whenever a new song is added to a Album which edits the no_of_songs and duration of the playlist

@@ -1,5 +1,6 @@
 <?php
   session_start();
+  $_SESSION['notify'];
 ?>
 
 <!doctype html>
@@ -40,6 +41,14 @@
         </nav>
     </div>
 </section>
+
+<?php
+  if($_SESSION['notify'] == 1)
+    echo "<script>alert('Account created sucessfully');</script>";
+  if($_SESSION['notify'] == 2)
+    echo "<script>alert('Failed to create account');</script>";
+  $_SESSION['notify'] = 0;
+?>
 
 <!--signup functionality-->
 <section class="py-7 py-md-0 bg-hero" id="login">
@@ -102,7 +111,7 @@
                     <!-- register button -->
                     <!-- TODO: register button functionality-->
                     <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                        <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Register">
+                        <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Register" onclick='window.location.reload();'>
                         
                     </div>
                 </form>

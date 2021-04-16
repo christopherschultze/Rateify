@@ -1,5 +1,6 @@
 <?php
   session_start();
+//   $_SESSION['selected_songs_info'];
 ?>
 
 <!doctype html>
@@ -53,7 +54,7 @@
                 <div style = "position: absolute; left:150px;" class="col text-center">
                     <h1>Album: <?php echo $_SESSION['selected_album']['name']?> </h1>
                     <h5>Artist: <?php echo $_SESSION['albums_artist'] ?></h5>
-                    <h6>Date: <?php echo $_SESSION['selected_songs_info']['date_created']?></h6>
+                    <h6>Date: <?php echo $_SESSION['selected_album']['date_created']?></h6>
                 </div>
                  <!-- hyperlinks -->
              

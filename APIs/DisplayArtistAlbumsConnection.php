@@ -13,7 +13,7 @@
                 if ($albumInfo->num_rows > 0){
                     while($row2 = $albumInfo->fetch_assoc())
                     {
-                        echo $row2['name'];
+                        //echo $row2['name'];
                         $artists_album_info[] = $row2;
                     }
                 }
@@ -22,7 +22,6 @@
         }else{
             $_SESSION['artists_albums'] = NULL;
         }
-        
         
         header("Location: ../frontend/ArtistViewAlbums.php");
 

@@ -1,16 +1,12 @@
-<?php
-  session_start();
-  // $_SESSION['playlist_success'];
-?>
-
-
 <!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Creating a playlist...</title>
+    <title>Rateify - Admin</title>
+    <meta name="description"
+          content="Rateify is a music service that allows users to rate songs"/>
 
     <!--Inter UI font-->
     <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet">
@@ -42,38 +38,43 @@
     </div>
 </section>
 
-<!--signup functionality-->
+<!-- listener functionality -->
 <section class="py-7 py-md-0 bg-hero" id="login">
     <div class="container">
         <div class="row vh-md-100">
-            <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
-                
-              <!-- header -->
+            <div class="col-12 mx-auto my-auto text-center">
+              
               <div class="col text-center">
-                <h1> Name your playlist!</h1>
+                <h1> Hello, {account.username}</h1>
+                <p>{account.username}</p> 
+                <p>{account.password}</p> 
+                <p>{account.account_type}</p> 
               </div>
 
-                <!-- signup form -->
-                <form action="../APIs/createPlaylistConnection.php" method="post">
+              <!-- header -->
+              <div class="col text-center">
+                <h2> Please select an action. </h2>
+              </div>
 
-                    <!-- playlist name field -->
-                    <div class="form-group">
-                      <label for="exampleInputEmail1" >Playlist Name</label>
-                      <input name = "playlist_name" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter playlist name">
-                    </div>
-
-                    <!-- login button -->
-                    <!-- TODO: login button functionality-->
-                    <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                      <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Create Playlist">
-                    </div>
-                </form>
-                <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="listenerPlaylists.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Go Back <-
+              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
+                  Monitor song
                 </a>
               </div>
 
+              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
+                  Monitor rating
+                </a>
+              </div>
+
+              <!-- logout button-->
+              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                <a href="index.html" class="btn btn-primary" role="button" aria-pressed="true">
+                  Logout
+                </a>
+              </div>
+              
             </div>
         </div>
     </div>
