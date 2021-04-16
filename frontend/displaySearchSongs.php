@@ -58,6 +58,9 @@
               </div>
 
               <table class="table">
+              <div  style = "top: 15px;" class="col text-center">
+                <h6>*Click on Song Name For Details*</h6>
+                </div>
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -70,6 +73,7 @@
                     </thead>
                     <tbody>
               <!-- view song form -->
+              <form action="../APIs/SongDisplayUser.php" method="post">
                   <?php
                     include '../APIs/logic.php';
                     include '../APIs/connection.php';
@@ -92,8 +96,14 @@
                             if($artist_names->num_rows > 0)
                             {
                                 while($row3 = $artist_names->fetch_assoc())
+                                {
                                     array_push($artists, $row3['artist_username']);
+                                }
+                                    
+                                
+                               
                             }
+
                             $duration = $_SESSION['all_songs'][$song_no]['duration'];
                             $no_of_plays = $_SESSION['all_songs'][$song_no]['no_of_plays'];
                             // $album_name = $_SESSION['all_songs'][$song_no]['album_name'];
@@ -114,9 +124,11 @@
                             {
                                 while($iteration < $smaller)
                                 {
+                                    $song_name = $_SESSION['all_songs'][$song_no]['name'];
+                                    $song_id = $_SESSION['all_songs'][$song_no]['id'];
                                     if($iteration == 0)
                                     {
-                                        echo '<tr><th scope="row">'.$id.'</th><td>'.$_SESSION['all_songs'][$song_no]['name'].'</td><td>'.$albums[$iteration].'</td><td>'.$artists[$iteration].'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
+                                        echo '<tr><th scope="row">'.$id.'</th><td><input name = "song_id_no['.$song_id.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$song_name.'"></td><td>'.$albums[$iteration].'</td><td>'.$artists[$iteration].'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
                                     }
                                     else
                                     {
@@ -179,6 +191,7 @@
                         echo '<h3> No results </h3>';
                     }
                   ?> 
+                  </form>
               </tbody>
             </table>
             </div>
