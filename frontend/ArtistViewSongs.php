@@ -53,11 +53,14 @@
               </div>
 
               <!-- hyperlinks -->
-              <div class="col text-center">
+              <div  class="col text-center">
                 <a href="artist.php"> Return to action page</a>.
               </div>
 
               <table class="table">
+              <div  style = "top: 15px;" class="col text-center">
+                <h6>*Click on Song Name For Details*</h6>
+                </div>
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -69,6 +72,8 @@
                     </thead>
                     <tbody>
               <!-- view song form -->
+
+              <form action="../APIs/SongDisplay.php" method="post">
                   <?php
 
                     if(!empty($_SESSION['artists_songs']))
@@ -81,8 +86,9 @@
                             $duration = $_SESSION['artists_songs'][$song_no]['duration'];
                             $no_of_plays = $_SESSION['artists_songs'][$song_no]['no_of_plays'];
                             $album_name = $_SESSION['artists_songs'][$song_no]['album_name'];
+                            $song_id = $_SESSION['artists_songs'][$song_no]['id'];
                             
-                            echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name.'</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
+                            echo '<tr><th scope="row">'.$id.'</th><td><input name = "song_id['.$song_id.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$song_name.'"></td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
 
                             $id++;
                             $song_no++;
@@ -90,6 +96,7 @@
                        
                     }
                   ?> 
+                </form>
               </tbody>
             </table>
             </div>
