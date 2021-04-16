@@ -1,16 +1,12 @@
-<?php
-  session_start();
-  // $_SESSION['playlist_success'];
-?>
-
-
 <!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Creating a playlist...</title>
+    <title>Rateify - Listener Page</title>
+    <meta name="description"
+          content="Rateify is a music service that allows users to rate songs"/>
 
     <!--Inter UI font-->
     <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet">
@@ -24,6 +20,7 @@
     <link rel="stylesheet" href="css/default.css" id="theme-color">
 </head>
 <body>
+
 
 <!--navigation-->
 <section class="smart-scroll">
@@ -42,7 +39,8 @@
     </div>
 </section>
 
-<!--signup functionality-->
+
+<!--Search Song-->
 <section class="py-7 py-md-0 bg-hero" id="login">
     <div class="container">
         <div class="row vh-md-100">
@@ -50,41 +48,34 @@
                 
               <!-- header -->
               <div class="col text-center">
-                <h1> Name your playlist!</h1>
+                <h2> Search For a Song.</h2>
               </div>
+              
 
-                <!-- signup form -->
-                <form action="../APIs/createPlaylistConnection.php" method="post">
-
-                    <!-- playlist name field -->
+                <form>
+                    <!-- Search field -->
                     <div class="form-group">
-                      <label for="exampleInputEmail1" >Playlist Name</label>
-                      <input name = "playlist_name" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter playlist name">
+                      <input type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Song Name">
                     </div>
-
-                    <!-- login button -->
-                    <!-- TODO: login button functionality-->
-                    <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                      <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Create Playlist">
+                    <div style="position: absolute; right: 15px; top: 76.5px;"> 
+                        <img src="Images/magnifying glass.png" width="auto" height="41" />
                     </div>
+                   
                 </form>
-                <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="listenerPlaylists.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Go Back <-
-                </a>
-              </div>
 
+                <!--GO Back Button [idk how to move it further down]-->
+                <div class = "positioning">
+                    <a href="listenerSongs.html" class="btn btn-primary" role="button" aria-pressed="true">
+                        <- Go Back
+                      </a>
+                </div>
             </div>
         </div>
+       
+       
     </div>
+   
 </section>
-
-<!--scroll to top-->
-<div class="scroll-top">
-    <i class="fa fa-angle-up" aria-hidden="true"></i>
-</div>
-
-
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

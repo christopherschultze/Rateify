@@ -27,16 +27,20 @@
 
         function signup($conn, $username, $password, $type) //done2
         {
+            $notify = 0;
             $result = getMaxID($conn);
             $row = $result->fetch_assoc(); 
             $id = $row["max_id"] + 1;
             $sql = "INSERT INTO account (username, password, account_type, id)
                     VALUES('$username', '$password', '$type', '$id')";
             if ($conn->query($sql) === TRUE) {
+                $notify = 1;
                 echo "New record created successfully";
             } else {
+                $notify = 2;
              echo "Error: " . $sql . "<br>" . $conn->error;
             }
+            return $notify;
         }
 
         function getMaxID($conn){
@@ -354,13 +358,17 @@
         // Adds a new rating to a specific song that is made by a specific user
         function addRating($conn, $username, $songId, $comment, $star_rating) //done2
         {
+            $notify = 0;
             $sql = "INSERT INTO rating (user_username, song_id, star_rating, comment)
                     VALUES('$username', '$songId', '$star_rating', '$comment')";
             if ($conn->query($sql) === TRUE) {
+                $notify = 1;
                 echo "New record created successfully";
             } else {
+                $notify = 2;
              echo "Error: " . $sql . "<br>" . $conn->error;
             }  
+            return $notify;
         }
 
         // function that is called whenever a new song is added to a Album which edits the no_of_songs and duration of the playlist

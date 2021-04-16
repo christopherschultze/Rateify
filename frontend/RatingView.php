@@ -1,5 +1,6 @@
 <?php
   session_start();
+  $_SESSION['notify'];
 ?>
 
 <!doctype html>
@@ -43,6 +44,13 @@
     </div>
 </section>
 
+<?php
+  if($_SESSION['notify'] == 1)
+    echo "<script>alert('Comment added sucessfully');</script>";
+  if($_SESSION['notify'] == 2)
+    echo "<script>alert('Failed to add comment');</script>";
+  $_SESSION['notify'] = 0;
+?>
 
 <!--Search Song-->
 <section class="py-7 py-md-0 bg-hero" id="login">
@@ -62,7 +70,7 @@
                       <input name = "comment" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter your comment">
                     </div>
                     <div style="position: absolute; right: 15px; top: 135px;">  
-                    <button type = "submit"><img src="Images/comment.jpg" width="auto" height="41" /></button>
+                    <button type = "submit"><img src="Images/comment.jpg" width="auto" height="41" onclick='window.location.reload();'/></button>
                     </div>
                     <p>
                         Rate This Song?

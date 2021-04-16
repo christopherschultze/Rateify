@@ -9,9 +9,15 @@
     $account_type = $_POST['account_type'];
 
     if(!empty($username) && !empty($password)){
-        signup($conn,$username,$password,$account_type);
-        header("Location: ../frontend/login.php");
-        die;
+        $_SESSION['notify'] = signup($conn,$username,$password,$account_type);
+        echo $_SESSION['notify'];
+        header("Location: ../frontend/signup.php");
+    }
+    else
+    {
+        $_SESSION['notify'] = 2;
+        echo $_SESSION['notify'];
+        // header("Location: ../frontend/signup.php");
     }
 
     closeCon($conn); 

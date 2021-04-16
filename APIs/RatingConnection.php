@@ -12,6 +12,6 @@
     $id = $result ->fetch_assoc();
     $song_id = $id['song_id'];
     // $conn, $username, $songId, $comment, $star_rating
-    addRating($conn, $_SESSION['username'], $song_id, $comment, $star);
-    header("Location: ../frontend/listener.php");
+    $_SESSION['notify'] = addRating($conn, $_SESSION['username'], $song_id, $comment, $star);
+    header("Location: ../frontend/RatingView.php");
 ?>
