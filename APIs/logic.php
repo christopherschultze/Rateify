@@ -125,7 +125,7 @@
 
         function searchSongByName($conn, $song_name) //done2
         {
-            $sql = "SELECT * FROM song WHERE name = '$song_name'";
+            $sql = "SELECT * FROM song AS songs, artist_song AS artists WHERE songs.id = artists.song_id AND songs.name = '$song_name'";
             $result = mysqli_query($conn, $sql);
             
             return $result;
@@ -288,9 +288,9 @@
             makeChangestoPlaylist($conn, $p_name, $songId);
         }
 
-        function increaseNoOfPlays($conn, $songName) //done2
+        function increaseNoOfPlays($conn, $songId) //done2
         {
-            $sql = "UPDATE song SET no_of_plays = no_of_plays + 1 WHERE name = '$songName' ";
+            $sql = "UPDATE song SET no_of_plays = no_of_plays + 1 WHERE id = '$songId' ";
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
             } else {

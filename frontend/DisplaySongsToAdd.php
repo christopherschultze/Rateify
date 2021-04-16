@@ -8,7 +8,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Artist</title>
+    <title>Rateify - Listener Page</title>
     <meta name="description"
           content="Rateify is a music service that allows users to rate songs"/>
 
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="css/default.css" id="theme-color">
 </head>
 <body>
+
 
 <!--navigation-->
 <section class="smart-scroll">
@@ -42,72 +43,63 @@
     </div>
 </section>
 
-<!-- listener functionality -->
+
+<!--Search Song-->
 <section class="py-7 py-md-0 bg-hero" id="login">
     <div class="container">
-        <div class="row vh-md-100">
-            <div class="col-12 mx-auto my-auto text-center">
-              
-              <div class="col text-center">
-              <h1> View my albums. </h1>
-              </div>
-
-              <!-- hyperlinks -->
-              <div class="col text-center">
-                <a href="artist.php"> Return to action page</a>.
-              </div>
-
-              <!-- view song form -->
-              <table class="table">
+    <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
+        
+        <form action="../APIs/SearchSongsConnection.php" method="post">
+        <div style="position: absolute; top: 75px; width:700px;"class="form-group">
+            <input name = "song_name" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter Song Name">
+            <div style= "position: absolute; right: 0px; top: 0px;">  
+                <button style="background-color: white; border: white;"type = "submit"><img src="Images/magnifying glass.png" width="auto" height="42" /></button>
+            </div>
+        </div>          
+        </form>
+    </div>
+    <div style="position: absolute; top:200px;">
+                <table style = "width: 1150px;" class="table">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Album Name</th>
-                        <th scope="col">No_of_Songs</th>
-                        <th scope="col">Duration</th>
+                        <th style = "width: 100px;"scope="col">#</th>
+                        <th style = "width: 192px;" scope="col">Song</th>
+                        <th style = "width: 192px;" scope="col">Artist</th>
+                        <th style = "width: 192px;" scope="col">Album</th>
+                        <th style = "width: 192px;" scope="col">Duration</th>
+                        <th style = "width: 100px;" scope="col">No_of_Plays</th>
                     </tr>
                     </thead>
                     <tbody>
-              <!-- view song form -->
+                    <!-- view song form -->
+                    <?php
 
-              <!--NEED TO EDIT WHERE THIS GOES WHEN CLICKING ALBUM NAME-->
-              <form action="../APIs/test.php" method="post">
-                  <?php
-
-                    if(!empty($_SESSION['artists_albums']))
+                    if(!empty($_SESSION['song_results']))
                     {
-                        $no_of_songs = count($_SESSION['artists_albums']);
-                        $album_no = 0;
+                        $no_of_songs = count($_SESSION['song_results']);
+                        $song_no = 0;
                         $id = 1;
-                        while($no_of_songs > $album_no){
-                            $duration = $_SESSION['artists_albums'][$album_no]['duration'];
-                            $no_of_songs = $_SESSION['artists_albums'][$album_no]['no_of_songs'];
-                            $album_name = $_SESSION['artists_albums'][$album_no]['name'];
+                        while($no_of_songs > $song_no){
+                            $song_name = $_SESSION['song_results'][$song_no]['name'];
+                            $duration = $_SESSION['song_results'][$song_no]['duration'];
+                            $no_of_plays = $_SESSION['song_results'][$song_no]['no_of_plays'];
+                            $album_name = $_SESSION['song_results'][$song_no]['album_name'];
+                            $artist_name = $_SESSION['song_results'][$song_no]['artist_username'];
                             
-                            
-                            echo '<tr><th scope="row">'.$id.'</th><td><input name = "album_name['.$album_name.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$album_name.'"></td><td>'.$no_of_songs.'</td><td>'.$duration.'</td></tr>';
-                            
+                            echo '<tr><th style = "width: 150px;" scope="row">'.$id.'</th><td>'.$song_name.'</td><td> '.$artist_name.'<td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
+
                             $id++;
-                            $album_no++;
+                            $song_no++;
                         }
                        
                     }
-                  ?> 
-                  </form>
-              </tbody>
-            </table>
-              
-            </div>
-        </div>
+                    ?> 
+                    </tbody>
+                </table>
+    </div>  
     </div>
+   
 </section>
-
-<!--scroll to top-->
-<div class="scroll-top">
-    <i class="fa fa-angle-up" aria-hidden="true"></i>
-</div>
-
-
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

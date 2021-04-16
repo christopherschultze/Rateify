@@ -6,7 +6,9 @@
     // createPlaylist($conn, 'playlist1', 'user1');
     // $result = searchSongsInAlbum($conn, 'album1');
     // addRating($conn, 'user1', 1, 'this shit is lit', 500);
-    $result = searchArtistAlbum($conn, 'artist1');
+
+    $result = searchSongByName($conn, 'Runaway');
+   // $result = searchArtistAlbum($conn, 'artist1');
 
     // $result = searchSongByName($conn, 'SICKO MODE');
     // $ids = array();
@@ -15,9 +17,7 @@
     if ($result->num_rows > 0) {
     //   // output data of each row
       while($row = $result->fetch_assoc()) {
-        echo "artist username ";
-        echo $row['album_name'];
-        echo "<br>";
+        echo $row['artist_username'];
       }
     }
     //       array_push($ids, $row['id']);
