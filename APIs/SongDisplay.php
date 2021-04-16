@@ -6,7 +6,6 @@
     $_SESSION['song'] = key($_POST['song_id']);
     $_SESSION['songs_artist'] = $_SESSION['username'];
 
-    
     $result = searchSong($conn,$_SESSION['song']);
     $result2 = searchRatings($conn,$_SESSION['song']);
     if ($result->num_rows > 0) {
