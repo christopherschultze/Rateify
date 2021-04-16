@@ -48,7 +48,7 @@
             
             <div class="col-12 mx-auto my-auto text-center">
             <div  class="col text-left">
-                <a href="ArtistViewAlbums.php"> <-Return to viewing Albums</a>.
+                <a href="artist.php"> <-Return to Artist Options</a>.
               </div>
                 <div style = "position: absolute; left:150px;" class="col text-center">
                     <h1>Album: <?php echo $_SESSION['selected_album']['name']?> </h1>
