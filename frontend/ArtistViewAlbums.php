@@ -71,7 +71,7 @@
               <!-- view song form -->
 
               <!--NEED TO EDIT WHERE THIS GOES WHEN CLICKING ALBUM NAME-->
-              <form action="../APIs/test.php" method="post">
+              <form action="../APIs/DisplayAlbumConnection.php" method="post">
                   <?php
 
                     if(!empty($_SESSION['artists_albums']))

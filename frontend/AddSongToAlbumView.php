@@ -54,7 +54,7 @@
 
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a href="artist.php"> Return to action page</a>.
+                <a href="AlbumPage.php"> Return to action page</a>.
               </div>
 
               <table class="table">
@@ -62,12 +62,11 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Song</th>
-                        <th scope="col">Album</th>
-                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
               <!-- view song form -->
+              <form action="../APIs/AddingSongToAlbumConnection.php" method="post">
                   <?php
                     include '../APIs/logic.php';
                     include '../APIs/connection.php';
@@ -80,8 +79,10 @@
                         while($no_of_songs > $song_no){
                             $result = searchSong($conn, $_SESSION['all_songs_of_artist'][$song_no]);
                             $song_name = $result->fetch_assoc();
+                            $name = $song_name['name'];
+                            $song_id = $song_name['id'];
                             
-                            echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name['name'].'</td><td><a href="#" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Select</a></td></tr>';
+                            echo '<tr><th scope="row">'.$id.'</th><td><input name = "song_adding_album['.$song_id.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value ="'.$name.'"></td></tr>';
                             
 
                             $id++;
@@ -90,6 +91,7 @@
                        
                     }
                   ?> 
+                  </form>
               </tbody>
             </table>
             </div>

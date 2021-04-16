@@ -44,63 +44,60 @@
 
 <!-- listener functionality -->
 <section class="py-7 py-md-0 bg-hero" id="login">
-    <div class="container">
-        <div class="row vh-md-100">
+    <div style = "position: absolute; top:200px; left: 20px;"class="container">
+            
             <div class="col-12 mx-auto my-auto text-center">
-              
-              <div class="col text-center">
-              <h1> View my songs. </h1>
+            <div  class="col text-left">
+                <a href="ArtistViewSongs.php"> <-Return to viewing Songs</a>.
               </div>
-
-              <!-- hyperlinks -->
-              <div  class="col text-center">
-                <a href="artist.php"> Return to action page</a>.
-              </div>
-
-              <table class="table">
-              <div  style = "top: 15px;" class="col text-center">
-                <h6>*Click on Song Name For Details*</h6>
+                <div style = "position: absolute; left:150px;" class="col text-center">
+                    <h1><?php echo $_SESSION['selected_songs_info']['name']?> </h1>
+                    <h5><?php echo $_SESSION['songs_artist'] ?></h5>
+                    <h6><?php echo $_SESSION['selected_songs_info']['date_created']?></h6>
+                </div>
+                 <!-- hyperlinks -->
+             
+            </div> 
+            <div style = "position: absolute; top: 300px; left:150px;"class = "col text-center">
+            <div  style = "top: 15px;" class="col text-left">
+                <h5>Ratings</h5>
+                </div>
+            <table style = "width: 1200px;" class="table">
                 </div>
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Song</th>
-                        <th scope="col">Album</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">No_of_Plays</th>
+                        <th scope="col">User</th>
+                        <th scope="col">star_rating</th>
+                        <th scope="col">Comment</th>
                     </tr>
                     </thead>
                     <tbody>
               <!-- view song form -->
 
-              <form action="../APIs/SongDisplay.php" method="post">
                   <?php
 
-                    if(!empty($_SESSION['artists_songs']))
+                    if(!empty($_SESSION['song_rating']))
                     {
-                        $no_of_songs = count($_SESSION['artists_songs']);
-                        $song_no = 0;
+                        $no_of_ratings = count($_SESSION['song_rating']);
+                        $rating_no = 0;
                         $id = 1;
-                        while($no_of_songs > $song_no){
-                            $song_name = $_SESSION['artists_songs'][$song_no]['name'];
-                            $duration = $_SESSION['artists_songs'][$song_no]['duration'];
-                            $no_of_plays = $_SESSION['artists_songs'][$song_no]['no_of_plays'];
-                            $album_name = $_SESSION['artists_songs'][$song_no]['album_name'];
-                            $song_id = $_SESSION['artists_songs'][$song_no]['id'];
+                        while($no_of_ratings > $rating_no){
+                            $user = $_SESSION['song_rating'][$rating_no]['user_username'];
+                            $star_rating = $_SESSION['song_rating'][$rating_no]['star_rating'];
+                            $comment = $_SESSION['song_rating'][$rating_no]['comment'];
                             
-                            echo '<tr><th scope="row">'.$id.'</th><td><input name = "song_id['.$song_id.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$song_name.'"></td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
+                            echo '<tr><th scope="row">'.$id.'</th><td>'.$user.'</td><td>'.$star_rating.'</td><td>'.$comment.'</td></tr>';
 
                             $id++;
-                            $song_no++;
+                            $rating_no++;
                         }
                        
                     }
-                  ?> 
-                </form>
+                  ?>
               </tbody>
-            </table>
+            </table> 
             </div>
-        </div>
     </div>
 </section>
 

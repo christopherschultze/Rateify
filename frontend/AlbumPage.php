@@ -44,63 +44,70 @@
 
 <!-- listener functionality -->
 <section class="py-7 py-md-0 bg-hero" id="login">
-    <div class="container">
-        <div class="row vh-md-100">
+    <div style = "position: absolute; top:200px; left: 20px;"class="container">
+            
             <div class="col-12 mx-auto my-auto text-center">
-              
-              <div class="col text-center">
-              <h1> View my songs. </h1>
+            <div  class="col text-left">
+                <a href="ArtistViewAlbums.php"> <-Return to viewing Albums</a>.
               </div>
-
-              <!-- hyperlinks -->
-              <div  class="col text-center">
-                <a href="artist.php"> Return to action page</a>.
-              </div>
-
-              <table class="table">
-              <div  style = "top: 15px;" class="col text-center">
-                <h6>*Click on Song Name For Details*</h6>
+                <div style = "position: absolute; left:150px;" class="col text-center">
+                    <h1>Album: <?php echo $_SESSION['selected_album']['name']?> </h1>
+                    <h5>Artist: <?php echo $_SESSION['albums_artist'] ?></h5>
+                    <h6>Date: <?php echo $_SESSION['selected_songs_info']['date_created']?></h6>
+                </div>
+                 <!-- hyperlinks -->
+             
+            </div> 
+            <div style = "position: absolute; top: 300px; left:150px;"class = "col text-center">
+            <div  style = "top: 15px;" class="col text-left">
+                <h5>Songs &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Album Duration: <?php echo $_SESSION['selected_album']['duration'] ?></h5>
+                </div>
+            <table style = "width: 1100px;" class="table">
                 </div>
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Song</th>
-                        <th scope="col">Album</th>
+                        <th scope="col">Song Name</th>
                         <th scope="col">Duration</th>
-                        <th scope="col">No_of_Plays</th>
+                        <th scope="col">no_of_plays</th>
                     </tr>
                     </thead>
                     <tbody>
               <!-- view song form -->
 
-              <form action="../APIs/SongDisplay.php" method="post">
                   <?php
 
-                    if(!empty($_SESSION['artists_songs']))
+                    if(!empty($_SESSION['album_songs']))
                     {
-                        $no_of_songs = count($_SESSION['artists_songs']);
+                        $no_of_songs = count($_SESSION['album_songs']);
                         $song_no = 0;
                         $id = 1;
                         while($no_of_songs > $song_no){
-                            $song_name = $_SESSION['artists_songs'][$song_no]['name'];
-                            $duration = $_SESSION['artists_songs'][$song_no]['duration'];
-                            $no_of_plays = $_SESSION['artists_songs'][$song_no]['no_of_plays'];
-                            $album_name = $_SESSION['artists_songs'][$song_no]['album_name'];
-                            $song_id = $_SESSION['artists_songs'][$song_no]['id'];
+                            $name = $_SESSION['album_songs'][$song_no]['name'];
+                            $sduration = $_SESSION['album_songs'][$song_no]['duration'];
+                            $no_of_plays = $_SESSION['album_songs'][$song_no]['no_of_plays'];
                             
-                            echo '<tr><th scope="row">'.$id.'</th><td><input name = "song_id['.$song_id.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$song_name.'"></td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td></tr>';
+                            echo '<tr><th scope="row">'.$id.'</th><td>'.$name.'</td><td>'.$sduration.'</td><td>'.$no_of_plays.'</td></tr>';
 
                             $id++;
                             $song_no++;
                         }
                        
                     }
-                  ?> 
-                </form>
+                  ?>
               </tbody>
-            </table>
+              
+            </table> 
+
+            <?php
+              echo "<br>";
+              echo "<br>";
+              echo "<br>";
+              echo '<div><a href="../APIs/AddSongToAlbumConnection.php"> +Add Song To Album</a>.</div>';
+              echo "<br>";
+              echo "<br>";
+            ?>
             </div>
-        </div>
     </div>
 </section>
 
