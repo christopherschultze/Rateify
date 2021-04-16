@@ -4,7 +4,7 @@
     include 'logic.php';    
     $conn = connect();
     $_SESSION['album'] = key($_POST['album_name']);
-    $_SESSION['songs_artist'] = $_SESSION['username'];
+    $_SESSION['albums_artist'] = $_SESSION['username'];
 
     
     $result = searchSongsInAlbum($conn,$_SESSION['album']);
@@ -22,6 +22,18 @@
     else
     {
         $_SESSION['album_songs'] = NULL;
+    }
+
+    $result3 = searchAlbum($conn, $_SESSION['album']);
+    if ($result3->num_rows > 0) {
+        while($row3 = $result3->fetch_assoc()) {
+            $album_info = $row3;
+        }
+
+        $_SESSION["selected_album"] = $album_info;
+    }
+    else{
+        $_SESSION["selected_album"] = NULL;
     }
 
     header("Location: ../frontend/AlbumPage.php");
