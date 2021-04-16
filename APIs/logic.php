@@ -1,7 +1,7 @@
 <?php
         function hello2($conn, $message)
         {
-            echo $message;
+            echo "<script>alert('$message');</script>";
         }
         //logs in with provided user info and password, then use SQL query to query database 
         //after qurerying return the result
@@ -170,6 +170,14 @@
             return $result;
         }
 
+        function searchAlbumArtist($conn, $username, $album_name)
+        {
+            $sql = "SELECT * FROM artist_album WHERE artist_username = '$username' AND album_name = '$album_name'";
+            $result = mysqli_query($conn, $sql);
+            
+            return $result;
+        }
+
         // Searches for all Ratings made under a specific song
         // result contains all ratings under a song
         function searchRatings($conn, $songID) //done2
@@ -202,20 +210,36 @@
         //the corressponding function is also called to create a relation
         function createSong($conn, $id, $album_name, $no_of_plays, $duration, $name, $date_created, $username, $type) //done2
         {
+            $notify = 0;
             if($album_name == NULL)
             {
                 $sql = "INSERT INTO song (id, album_name, no_of_plays, duration, name, date_created)
                         VALUES ('$id', NULL, '$no_of_plays', '$duration', '$name', '$date_created')";
+                if ($conn->query($sql) === TRUE) {
+                    echo "<script>alert('song created successfully');</script>";
+                    $notify = 1;
+                } else {
+                    $notify = 2;
+                    echo "<script>alert('Error creating song');</script>";
+                }
             }
             else
             {
                 $sql = "INSERT INTO song (id, album_name, no_of_plays, duration, name, date_created)
                         VALUES ('$id', '$album_name', '$no_of_plays', '$duration', '$name', '$date_created')";
-            }
-            if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-            } else {
-             echo "Error: " . $sql . "<br>" . $conn->error;
+                if ($conn->query($sql) === TRUE) {
+                    echo "<script>alert('song created successfully');</script>";
+                    $notify = 1;
+                } else {
+                    $notify = 2;
+                 echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+                $sql2 = "INSERT INTO album_song(album_name, song_id) VALUES('$album_name', '$id')";
+                if ($conn->query($sql2) === TRUE) {
+                    echo "<script>alert('song added to album successfully');</script>";
+                } else {
+                    echo "<script>alert('Error adding song to album');</script>";
+                }
             }
             if($album_name != NULL)
                 addSongToAlbum($conn, $album_name, $id);
@@ -223,6 +247,7 @@
                 addToArtistSong($conn, $username, $id);
             if($type == 'producer')
                 addToProduceSong($conn, $username, $id);
+            return $notify;
         }
 
         // Connects a artists and the song that they have created
@@ -305,15 +330,25 @@
         }
 
         //creates a new Album and specifies the name of the album as well as the date created (no_of_songs and duration are set to 0 to begin with)
-        function createAlbum($conn, $album_name, $date_created) //done2
+        function createAlbum($conn, $album_name, $date_created, $username) //done2
         {
+            $notify = 0;
             $sql = "INSERT INTO album (name, no_of_songs, duration, date_created)
                     VALUES('$album_name', 0, 0, '$date_created')";
+            if ($conn->query($sql) === TRUE) {
+                $notify = 1;
+                echo "New record created successfully";
+            } else {
+                $notify = 2;
+             echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+            $sql = "INSERT INTO artist_album(artist_username, album_name) VALUES ('$username', '$album_name')";  
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
             } else {
              echo "Error: " . $sql . "<br>" . $conn->error;
-            }  
+            }
+            return $notify;
         }
 
         // Adds a new rating to a specific song that is made by a specific user
@@ -412,46 +447,50 @@
         // if the user is an admin, it lets the user delete a Song as well as all relations that song has
         function deleteSong($conn, $songID) //done2
         {
+            $notify = 0;
+            $result = searchSong($conn, $song_id);
+                $sql = "DELETE FROM album_song WHERE song_id = $songID";
+                if ($conn->query($sql) === TRUE) {
+                    echo "<script>alert('Song deleted successfully');</script>";
+                    $notify = 1;
+                    } else {
+                    echo "Error deleting record: " . $conn->error;
+                    $notify = 2;
+                    }
+                $sql = "DELETE FROM playlist_song WHERE song_id = $songID";
+                if ($conn->query($sql) === TRUE) {
+                    echo "Record deleted successfully";
+                    } else {
+                    echo "Error deleting record: " . $conn->error;
+                    }
+                $sql = "DELETE FROM producer_song WHERE song_id = $songID";
+                if ($conn->query($sql) === TRUE) {
+                    echo "Record deleted successfully";
+                    } else {
+                    echo "Error deleting record: " . $conn->error;
+                    }
+                $sql = "DELETE FROM artist_song WHERE song_id = $songID";
+                if ($conn->query($sql) === TRUE) {
+                    echo "Record deleted successfully";
+                    } else {
+                    echo "Error deleting record: " . $conn->error;
+                    }
 
-            $sql = "DELETE FROM album_song WHERE song_id = $songID";
-            if ($conn->query($sql) === TRUE) {
-                echo "Record deleted successfully";
-                } else {
-                echo "Error deleting record: " . $conn->error;
-                }
-            $sql = "DELETE FROM playlist_song WHERE song_id = $songID";
-            if ($conn->query($sql) === TRUE) {
-                echo "Record deleted successfully";
-                } else {
-                echo "Error deleting record: " . $conn->error;
-                }
-            $sql = "DELETE FROM producer_song WHERE song_id = $songID";
-            if ($conn->query($sql) === TRUE) {
-                echo "Record deleted successfully";
-                } else {
-                echo "Error deleting record: " . $conn->error;
-                }
-            $sql = "DELETE FROM artist_song WHERE song_id = $songID";
-            if ($conn->query($sql) === TRUE) {
-                echo "Record deleted successfully";
-                } else {
-                echo "Error deleting record: " . $conn->error;
-                }
+                $sql = "DELETE FROM rating WHERE song_id = $songID";
+                if ($conn->query($sql) === TRUE) {
+                    echo "Record deleted successfully";
+                    } else {
+                    echo "Error deleting record: " . $conn->error;
+                    }
 
-            $sql = "DELETE FROM rating WHERE song_id = $songID";
-            if ($conn->query($sql) === TRUE) {
+                $sql = "DELETE FROM song WHERE id = '$songID'";
+
+                if ($conn->query($sql) === TRUE) {
                 echo "Record deleted successfully";
                 } else {
-                echo "Error deleting record: " . $conn->error;
+                echo "song not found " . $conn->error;
                 }
-
-            $sql = "DELETE FROM song WHERE id = '$songID'";
-
-            if ($conn->query($sql) === TRUE) {
-            echo "Record deleted successfully";
-            } else {
-            echo "song not found " . $conn->error;
-            }
+            return $notify;
         }
 
         //if the user is an admin, it lets the user delete a rating made by a specific user on a specific song 

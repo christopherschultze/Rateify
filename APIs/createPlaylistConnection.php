@@ -5,7 +5,7 @@
     $conn = connect();
     $playlist_name = $_POST['playlist_name'];
     $username = $_SESSION['username'];
-        createPlaylist($conn, $playlist_name, $username);
+    createPlaylist($conn, $playlist_name, $username);
     $result = searchSongsInPlaylist($conn, $_SESSION['users_playlists'][$_SESSION['curr_playlist']]);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
@@ -24,5 +24,5 @@
               $_SESSION['songs_info'] = NULL;
           }
         header("Location: ../frontend/listenerPlaylists.php");
-    header("Location: ../frontend/createPlaylist.php");
+    header("Location: ../frontend/listenerPlaylists.php");
 ?>

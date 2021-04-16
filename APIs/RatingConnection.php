@@ -13,5 +13,5 @@
     $song_id = $id['song_id'];
     // $conn, $username, $songId, $comment, $star_rating
     addRating($conn, $_SESSION['username'], $song_id, $comment, $star);
-    header("Location: ../frontend/RatingView.php");
+    header("Location: ../frontend/listener.php");
 ?>

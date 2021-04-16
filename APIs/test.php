@@ -3,18 +3,19 @@
     include 'logic.php';
     
     $conn = connect();
-    echo $_POST['formGender'];
-    echo "<br>";
-    echo $_POST['comment'];
-    if(isset($_POST['formSubmit']) )
-    {
-      echo $_POST['formMovie'];
-      // $varName = $_POST['formName'];
-      // $varGender = $_POST['formGender'];
-      // $errorMessage = "";
+    $result = deleteAccount($conn, 'producer1', 'producer');
+    // echo $_POST['formGender'];
+    // echo "<br>";
+    // echo $_POST['comment'];
+    // if(isset($_POST['formSubmit']) )
+    // {
+    //   echo $_POST['formMovie'];
+    //   // $varName = $_POST['formName'];
+    //   // $varGender = $_POST['formGender'];
+    //   // $errorMessage = "";
 
-      // - - - snip - - - 
-    }
+    //   // - - - snip - - - 
+    // }
     // if (isset($_POST['submit'])){
     //   echo "sefgmesiofesmif";
     //   echo $_POST['Subject']; 

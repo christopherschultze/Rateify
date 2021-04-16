@@ -72,13 +72,13 @@
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
+                <a href="CreateSongView.php" class="btn btn-primary" role="button" aria-pressed="true">
                   Create a new Song
                 </a>
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
+                <a href="CreateAlbumView.php" class="btn btn-primary" role="button" aria-pressed="true">
                   Create Albums
                 </a>
               </div>

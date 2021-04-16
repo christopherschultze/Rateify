@@ -101,7 +101,7 @@
                                 {
                                     if($iteration == 0)
                                     {
-                                        echo '<tr><th scope="row">'.$id.'</th><td>'.$_SESSION['all_songsAdmin'][$song_no]['name'].'</td><td>'.$artists[$iteration].'</td><td>'.$_SESSION['all_songs'][$song_no]['id'].'</td></tr>';
+                                        echo '<tr><th scope="row">'.$id.'</th><td>'.$_SESSION['all_songsAdmin'][$song_no]['name'].'</td><td>'.$artists[$iteration].'</td><td>'.$_SESSION['all_songsAdmin'][$song_no]['id'].'</td></tr>';
                                     }
                                     else
                                     {

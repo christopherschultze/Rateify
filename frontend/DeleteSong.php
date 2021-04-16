@@ -1,5 +1,6 @@
 <?php
   session_start();
+  // $_SESSION['notify'] = 0;
 ?>
 
 
@@ -51,6 +52,14 @@
               <div class="col text-center">
                 <h1> Select a song</h1>
               </div>
+              <?php
+                  if($_SESSION['notify'] == 1)
+                    echo "<script>alert('Song deleted successfully');</script>";
+                  if($_SESSION['notify'] == 2)
+                    echo "<script>alert('Song not found');</script>";
+                  $_SESSION['notify'] = 0;
+              ?>
+              
 
                 <!-- signup form -->
                 <form action="../APIs/DeleteSongConnection.php" method="post">
@@ -64,11 +73,13 @@
                     <!-- login button -->
                     <!-- TODO: login button functionality-->
                     <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                      <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "DELETE!">
+                      <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "DELETE!" onclick='window.location.reload();'>
                     </div>
                 </form>
+
+                
                 <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="admin.php" class="btn btn-primary" role="button" aria-pressed="true">
+                <a href="admin.php" class="btn btn-primary" role="button" aria-pressed="true" >
                   Go Back <-
                 </a>
               </div>

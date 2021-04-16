@@ -2,13 +2,14 @@
   session_start();
 ?>
 
+
 <!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Admin</title>
+    <title>Rateify - Create Album</title>
     <meta name="description"
           content="Rateify is a music service that allows users to rate songs"/>
 
@@ -29,7 +30,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.php">
+            <a class="navbar-brand heading-black" href="index.html">
                 Rateify
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -42,50 +43,59 @@
     </div>
 </section>
 
-<!-- listener functionality -->
+<!--signup functionality-->
 <section class="py-7 py-md-0 bg-hero" id="login">
     <div class="container">
         <div class="row vh-md-100">
-            <div class="col-12 mx-auto my-auto text-center">
-              
-              <div class="col text-center">
-              <h1> Hello <?php echo $_SESSION['username'] ?></h1>
-              <p> Username: <?php echo $_SESSION['username'] ?></p> 
-              <p> Account Type: <?php echo $_SESSION['account_type'] ?></p> 
-              </div>
-
+            <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
+                
               <!-- header -->
               <div class="col text-center">
-                <h2> Please select an action. </h2>
+                <h1> Add an album!</h1>
               </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="SearchSongAdmin.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Search Song
-                </a>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="DeleteSong.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Delete song
-                </a>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="DeleteRating.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Delete rating
-                </a>
-              </div>
-
-              <!-- logout button-->
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Logout
-                </a>
-              </div>
-
               
-              
+              <!-- hyperlinks -->
+              <div class="col text-center">
+                <a href="artist.php"> Return to artist page</a>
+              </div>
+
+              <?php
+                  if($_SESSION['notify'] == 1)
+                    echo "<script>alert('Album created successfully');</script>";
+                  if($_SESSION['notify'] == 2)
+                    echo "<script>alert('You already have this album!');</script>";
+                  $_SESSION['notify'] = 0;
+              ?>
+
+                <!-- signup form -->
+                <form action="../APIs/CreateAlbumArtistConnection.php" method="post">
+
+                    <!-- username field -->
+                    <div class="form-group">
+                      <label for="exampleInputEmail1" >Album Name</label>
+                      <input name = "album_name" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter album name">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword1" >Date Created</label>
+                      <input name = "date_created" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter date">
+                    </div>
+
+                    
+
+
+                    <!-- login button -->
+                    <!-- TODO: login button functionality-->
+                    <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                      <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Add song ->" onclick='window.location.reload();'>
+                    </div>
+                </form>
+
+                <!-- <?php
+                    // if($_SESSION['notify'] == 1)
+                    // echo "<script>alert('$message');</script>";
+                ?> -->
+
             </div>
         </div>
     </div>

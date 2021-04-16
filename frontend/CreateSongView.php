@@ -1,6 +1,8 @@
 <?php
   session_start();
+//   $_SESSION['notify'] = 0;
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -8,7 +10,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Search Songs</title>
+    <title>Rateify - Create Song</title>
     <meta name="description"
           content="Rateify is a music service that allows users to rate songs"/>
 
@@ -22,9 +24,6 @@
 
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="css/default.css" id="theme-color">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
 </head>
 <body>
 
@@ -32,7 +31,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.php">
+            <a class="navbar-brand heading-black" href="index.html">
                 Rateify
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -45,62 +44,68 @@
     </div>
 </section>
 
-<!-- listener functionality -->
+<!--signup functionality-->
 <section class="py-7 py-md-0 bg-hero" id="login">
     <div class="container">
         <div class="row vh-md-100">
-            <div class="col-12 mx-auto my-auto text-center">
-              
+            <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
+                
+              <!-- header -->
               <div class="col text-center">
-              <h1> Search Results for <?php echo $_SESSION['song_name_rating'];?> </h1>
+                <h1> Add your song!</h1>
               </div>
-
+              
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a href="RateSongView.php"> Return to action page</a>.
+                <a href="artist.php"> Return to artist page</a>
               </div>
 
-              <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Song</th>
-                        <th scope="col">Artist</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-              <!-- view song form -->
-              <form action="../APIs/RateSong.php" method="post">
-                  <?php
-                  include '../APIs/connection.php';
-                  include '../APIs/logic.php';
-                  $conn = connect();
-                    if(sizeof($_SESSION['all_rating_songs']) != 0)
-                    {
-                        echo '<h3> Found! </h3>';
-                        $index = 0;
-                        $id = 0;
-                        while($index < sizeof($_SESSION['all_rating_songs']))
-                        {
-                            $result = searchSong($conn, $_SESSION['all_rating_songs'][$index]['song_id']);
-                            $song_name = $result->fetch_assoc();
-                            $name = $song_name['name'];
-                            echo '<tr><th scope="row">'.$id.'</th><td><input type="submit" name = "rating['.$name.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$name.'"></td><td>'.$_SESSION['all_rating_songs'][$index]['artist_username'].'</td></tr>';
-                            $index++;
-                            $id++;
-                        }
-                    }
-                    else
-                    {
-                        echo '<h3> No results </h3>';
-                    }
-                  ?> 
-              </tbody>
-            </table>
+              <?php
+                  if($_SESSION['notify'] == 1)
+                    echo "<script>alert('Song created successfully');</script>";
+                  if($_SESSION['notify'] == 2)
+                    echo "<script>alert('You already have this song!');</script>";
+                  $_SESSION['notify'] = 0;
+              ?>
+
+                <!-- signup form -->
+                <form action="../APIs/CreateSongArtistConnection.php" method="post">
+
+                    <!-- username field -->
+                    <div class="form-group">
+                      <label for="exampleInputEmail1" >Song Name</label>
+                      <input name = "song_name" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter song name">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword1" >Song Duration</label>
+                      <input name = "duration" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter duration">
+                    </div>
+
+                    <!-- password field -->
+                    <div class="form-group">
+                      <label for="exampleInputPassword1" >Date</label>
+                      <input name = "date_created" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter date">
+                    </div>
+
+                    
+
+
+                    <!-- login button -->
+                    <!-- TODO: login button functionality-->
+                    <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                      <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Add song ->" onclick='window.location.reload();'>
+                    </div>
+                </form>
+
+                <!-- <?php
+                    // if($_SESSION['notify'] == 1)
+                    // echo "<script>alert('$message');</script>";
+                ?> -->
+
             </div>
         </div>
     </div>
-
 </section>
 
 <!--scroll to top-->
