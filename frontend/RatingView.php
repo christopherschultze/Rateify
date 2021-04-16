@@ -2,14 +2,13 @@
   session_start();
 ?>
 
-
 <!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Login</title>
+    <title>Rateify - Rating Page</title>
     <meta name="description"
           content="Rateify is a music service that allows users to rate songs"/>
 
@@ -26,11 +25,12 @@
 </head>
 <body>
 
+
 <!--navigation-->
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.html">
+            <a class="navbar-brand heading-black" href="index.php">
                 Rateify
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -43,7 +43,8 @@
     </div>
 </section>
 
-<!--signup functionality-->
+
+<!--Search Song-->
 <section class="py-7 py-md-0 bg-hero" id="login">
     <div class="container">
         <div class="row vh-md-100">
@@ -51,52 +52,60 @@
                 
               <!-- header -->
               <div class="col text-center">
-                <h1> Sign in to Rateify</h1>
+                <h2>Write something about <?php echo $_SESSION['song_choosing'];?></h2>
               </div>
               
-              <!-- hyperlinks -->
-              <div class="col text-center">
-                <a href="index.php"> Return to landing page</a>
-              </div>
 
-              <div class="col text-center">
-                <a href="signup.php"> Need to register for an account?</a>
-              </div>
-
-                <!-- signup form -->
-                <form action="../APIs/loginConnection.php" method="post">
-
-                    <!-- username field -->
+                <form action="../APIs/RatingConnection.php" method="post">
+                    <!-- Search field -->
                     <div class="form-group">
-                      <label for="exampleInputEmail1" >Username</label>
-                      <input name = "username" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter username">
+                      <input name = "comment" type="search" class="form-control" id="SongName" aria-describedby="SearchSongHelp" placeholder="Enter your comment">
                     </div>
-
-                    <!-- password field -->
-                    <div class="form-group">
-                      <label for="exampleInputPassword1" >Password</label>
-                      <input name = "password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <div style="position: absolute; right: 15px; top: 135px;">  
+                    <button type = "submit"><img src="Images/comment.jpg" width="auto" height="41" /></button>
                     </div>
-
-
-                    <!-- login button -->
-                    <!-- TODO: login button functionality-->
-                    <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                      <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Login">
-                    </div>
+                    <p>
+                        Rate This Song?
+                        <select name="star">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        </select>
+                    </p>
+                   
                 </form>
+                
+                <!-- <div class="form-group">
+                    Employee List :  
+                        <select>  
+                        <option value="Select">Select</option>}  
+                        <option value="Vineet">Vineet Saini</option>  
+                        <option value="Sumit">Sumit Sharma</option>  
+                        <option value="Dorilal">Dorilal Agarwal</option>  
+                        <option value="Omveer">Omveer Singh</option>  
+                        <option value="Rohtash">Rohtash Kumar</option>  
+                        <option value="Maneesh">Maneesh Tewatia</option>  
+                        <option value="Priyanka">Priyanka Sachan</option>  
+                        <option value="Neha">Neha Saini</option>  
+                        </select>  
+                </div> -->
 
+                <!--GO Back Button [idk how to move it further down]-->
+                <div class = "positioning">
+                    <a href="displayRateSong.php" class="btn btn-primary" role="button" aria-pressed="true">
+                        <- Go Back
+                      </a>
+                </div>
             </div>
         </div>
+       
+       
     </div>
+   
 </section>
-
-<!--scroll to top-->
-<div class="scroll-top">
-    <i class="fa fa-angle-up" aria-hidden="true"></i>
-</div>
-
-
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

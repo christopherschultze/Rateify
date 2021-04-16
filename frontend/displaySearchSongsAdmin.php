@@ -22,9 +22,6 @@
 
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="css/default.css" id="theme-color">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
 </head>
 <body>
 
@@ -52,43 +49,77 @@
             <div class="col-12 mx-auto my-auto text-center">
               
               <div class="col text-center">
-              <h1> Search Results for <?php echo $_SESSION['searchedSongName'];?> </h1>
+              <h1> Search Results for <?php echo $_SESSION['searchedSongNameAdmin'];?> </h1>
               </div>
 
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a href="RateSongView.php"> Return to action page</a>.
+                <a href="searchSongAdmin.php"> Return to action page</a>.
               </div>
 
               <table class="table">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Song</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Artist</th>
+                        <th scope="col">Song ID</th>
                     </tr>
                     </thead>
                     <tbody>
               <!-- view song form -->
-              <form action="../APIs/RateSong.php" method="post">
                   <?php
-                  include '../APIs/connection.php';
-                  include '../APIs/logic.php';
-                  $conn = connect();
-                    if(sizeof($_SESSION['all_rating_songs']) != 0)
+                    include '../APIs/logic.php';
+                    include '../APIs/connection.php';
+                    $conn = connect();
+                    if(sizeof($_SESSION['all_songsAdmin']) != 0)
                     {
-                        echo '<h3> Found! </h3>';
-                        $index = 0;
-                        $id = 0;
-                        while($index < sizeof($_SESSION['all_rating_songs']))
-                        {
-                            $result = searchSong($conn, $_SESSION['all_rating_songs'][$index]['song_id']);
-                            $song_name = $result->fetch_assoc();
-                            $name = $song_name['name'];
-                            echo '<tr><th scope="row">'.$id.'</th><td><input type="submit" name = "rating['.$name.']" type = "submit" style="border:1px solid black; background-color: transparent; color: white; role="button" aria-pressed="true" value = "'.$name.'"></td><td>'.$_SESSION['all_rating_songs'][$index]['artist_username'].'</td></tr>';
-                            $index++;
+                        $no_of_songs = count($_SESSION['all_songsAdmin']);
+                        // echo $_SESSION['all_songsAdmin'][0]['id'];
+                        // echo "<br/>";
+                        // echo $_SESSION['all_songsAdmin'][1]['id'];
+                        // echo "<br/>";
+                        // echo $_SESSION['all_songsAdmin'][2]['id'];
+                        // echo "<br/>";
+                        $song_no = 0;
+                        $id = 1;
+                        while($no_of_songs > $song_no){
+                            $artists = array();
+                            $artist_names = searchArtistBySong($conn, $_SESSION['all_songsAdmin'][$song_no]['id']);
+                            if($artist_names->num_rows > 0)
+                            {
+                                while($row3 = $artist_names->fetch_assoc())
+                                    array_push($artists, $row3['artist_username']);
+                            }
+                            $duration = $_SESSION['all_songsAdmin'][$song_no]['duration'];
+                            $no_of_plays = $_SESSION['all_songsAdmin'][$song_no]['no_of_plays'];
+                            // $album_name = $_SESSION['all_songs'][$song_no]['album_name'];
+                            $iteration = 0;
+                            if(!empty($artists))
+                            {
+                                while($iteration < sizeof($artists))
+                                {
+                                    if($iteration == 0)
+                                    {
+                                        echo '<tr><th scope="row">'.$id.'</th><td>'.$_SESSION['all_songsAdmin'][$song_no]['name'].'</td><td>'.$artists[$iteration].'</td><td>'.$_SESSION['all_songs'][$song_no]['id'].'</td></tr>';
+                                    }
+                                    else
+                                    {
+                                        echo '<tr><th scope="row"></th><td></td><td>'.$artists[$iteration].'</td><td></td><td></td></tr>';
+                                    }
+                                    $iteration++;
+                                }
+                                
+                            }
+                            else
+                                echo '<tr><th scope="row">'.$id.'</th><td>'.$_SESSION['all_songsAdmin'][$song_no]['name'].'</td><td>'.$artists[$iteration].'</td><td>'.$_SESSION['all_songs'][$song_no]['id'].'</td></tr>';
+                            
+                            
+
                             $id++;
+                            $song_no++;
                         }
+                       
                     }
                     else
                     {
@@ -100,7 +131,6 @@
             </div>
         </div>
     </div>
-
 </section>
 
 <!--scroll to top-->

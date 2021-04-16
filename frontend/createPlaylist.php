@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $_SESSION['playlist_success'];
+  // $_SESSION['playlist_success'];
 ?>
 
 

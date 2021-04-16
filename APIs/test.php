@@ -3,23 +3,39 @@
     include 'logic.php';
     
     $conn = connect();
+    echo $_POST['formGender'];
+    echo "<br>";
+    echo $_POST['comment'];
+    if(isset($_POST['formSubmit']) )
+    {
+      echo $_POST['formMovie'];
+      // $varName = $_POST['formName'];
+      // $varGender = $_POST['formGender'];
+      // $errorMessage = "";
+
+      // - - - snip - - - 
+    }
+    // if (isset($_POST['submit'])){
+    //   echo "sefgmesiofesmif";
+    //   echo $_POST['Subject']; 
+    //   }
     // createPlaylist($conn, 'playlist1', 'user1');
     // $result = searchSongsInAlbum($conn, 'album1');
     // addRating($conn, 'user1', 1, 'this shit is lit', 500);
 
-    $result = searchSongByName($conn, 'Runaway');
+    // $result = searchSongByName($conn, 'Runaway');
    // $result = searchArtistAlbum($conn, 'artist1');
 
     // $result = searchSongByName($conn, 'SICKO MODE');
     // $ids = array();
     // $artists = array();
     // $album_names = array();
-    if ($result->num_rows > 0) {
+    // if ($result->num_rows > 0) {
     //   // output data of each row
-      while($row = $result->fetch_assoc()) {
-        echo $row['artist_username'];
-      }
-    }
+    //   while($row = $result->fetch_assoc()) {
+    //     echo $row['artist_username'];
+    //   }
+    // }
     //       array_push($ids, $row['id']);
     //       array_push($album_names, $row['album_name']);
     //     }

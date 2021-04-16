@@ -4,10 +4,12 @@
     include 'logic.php';    
 
     $conn = connect();
-    $song_name = $_POST['song_name'];
+    $_SESSION['song_name_rating'] = $_POST['song_name'];
+    $song_name = $_SESSION['song_name_rating'];
     // echo $song_name;
     // echo "<br>";
-    $artist = $_POST['artist'];
+    $_SESSION['artist_rating']= $_POST['artist'];
+    $artist= $_SESSION['artist_rating'];
     // echo $artist;
     // echo "<br>";
     $_SESSION['all_rating_songs'] = array();
@@ -33,6 +35,7 @@
             echo "song not found";
         }
     }
+    // echo $_SESSION['artist_rating'];
     // print_r($_SESSION['all_rating_songs']);
     header("Location: ../frontend/displayRateSong.php");
 

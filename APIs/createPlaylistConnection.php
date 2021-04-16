@@ -7,19 +7,20 @@
     $playlist_name = $_POST['playlist_name'];
     $username = $_SESSION['username'];
     // echo $username;
-    $result = searchPlaylistsByUser($conn, $username);
-    if($result->num_rows == 0)
-    {
+    // $result = searchPlaylistsByUser($conn, $username);
+    // echo $result->num_rows;
+    // if($result->num_rows == 0)
+    // {
         createPlaylist($conn, $playlist_name, $username);
         // $_SESSION['playlist_success'] = TRUE;
         // echo "added";
-    }
-    else
-    {
+    // }
+    // else
+    // {
         // echo "failed";
         // header("Location: ../frontend/createPlaylist.php");
         // $_SESSION['playlist_success'] = FALSE;
-        echo "failed";
-    }
+        // echo "failed";
+    // }
     header("Location: ../frontend/createPlaylist.php");
 ?>

@@ -7,8 +7,12 @@
         //after qurerying return the result
         function login($conn, $username, $pwd) // done2
         {
-            $sql = "SELECT * FROM account WHERE username = '$username' AND password = '$pwd'";
-            $result = mysqli_query($conn, $sql);
+            $sql = "SELECT * FROM account WHERE username = ? AND password = ?";
+
+            $sql2 = $conn->prepare($sql);
+            $sql2->bind_param('ss', $username, $pwd);
+            $sql2->execute();
+            $result = $sql2->get_result();
             return $result;
         }
         //searches an account based on a given username
@@ -65,6 +69,8 @@
             
             return $result;
         }
+
+        // function searchSongByArt
 
         //searches for all albums inside album table
         //returns any tuples that have name = $album_name
