@@ -3,7 +3,6 @@
     include 'connection.php';
     include 'logic.php';    
     $conn = connect();
-    $temp = $_SESSION['temp'];
     $_SESSION['song_playing'] = key($_POST['song_played']);
     
     increaseNoOfPlays($conn,$_SESSION['song_playing']);
