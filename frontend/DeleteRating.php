@@ -1,5 +1,6 @@
 <?php
   session_start();
+  $_SESSION['notify'];
 ?>
 
 
@@ -41,6 +42,15 @@
     </div>
 </section>
 
+
+<?php
+  if($_SESSION['notify'] == 1)
+    echo "<script>alert('Comment removed sucessfully');</script>";
+  if($_SESSION['notify'] == 2)
+    echo "<script>alert('Failed to remove comment');</script>";
+  $_SESSION['notify'] = 0;
+?>
+
 <!--signup functionality-->
 <section class="py-7 py-md-0 bg-hero" id="login">
     <div class="container">
@@ -49,7 +59,7 @@
                 
               <!-- header -->
               <div class="col text-center">
-                <h1> Delete Ratingzzzzzzzz</h1>
+                <h1> Delete Rating</h1>
               </div>
 
                 <!-- signup form -->
@@ -69,7 +79,7 @@
                     <!-- login button -->
                     <!-- TODO: login button functionality-->
                     <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                      <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "DELETE!">
+                      <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "DELETE!" onclick='window.location.reload();'>
                     </div>
                 </form>
                 <div class="col-md-8 col-12 mx-auto pt-5 text-center">
