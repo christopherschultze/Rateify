@@ -29,7 +29,7 @@
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" href="index.html">
+            <a class="navbar-brand heading-black" href="index.php">
                 Rateify
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -54,11 +54,11 @@
               
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a href="index.html"> Return to landing page</a>.
+                <a href="index.php"> Return to landing page</a>.
               </div>
 
               <div class="col text-center">
-                <a href="login.html"> Already have an account?</a>.
+                <a href="login.php"> Already have an account?</a>.
               </div>
 
                 <!-- signup form -->

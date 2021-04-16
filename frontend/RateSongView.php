@@ -8,7 +8,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Artist</title>
+    <title>Rateify - Listener Page</title>
     <meta name="description"
           content="Rateify is a music service that allows users to rate songs"/>
 
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="css/default.css" id="theme-color">
 </head>
 <body>
+
 
 <!--navigation-->
 <section class="smart-scroll">
@@ -42,71 +43,54 @@
     </div>
 </section>
 
-<!-- listener functionality -->
+
+<!--Search Song-->
 <section class="py-7 py-md-0 bg-hero" id="login">
     <div class="container">
         <div class="row vh-md-100">
-            <div class="col-12 mx-auto my-auto text-center">
-              
-              <div class="col text-center">
-              <h1> Hello <?php echo $_SESSION['username'] ?></h1>
-              <p> Username: <?php echo $_SESSION['username'] ?></p> 
-              <p> Account Type: <?php echo $_SESSION['account_type'] ?></p> 
-              </div>
-
+            <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
+                
               <!-- header -->
               <div class="col text-center">
-                <h2> Please select an action. </h2>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <form action="../APIs/DisplayArtistSongsConnection.php" method="post">
-                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "View My Songs">
-                </form>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <form action="../APIs/DisplayArtistAlbumsConnection.php" method="post">
-                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "View My Albums">
-                </form>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
-                  Create a new Song
-                </a>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
-                  Create Albums
-                </a>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="../APIs/AddSongToAlbumConnection.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Add Songs to Album
-                </a>
-              </div>
-
-              <!-- logout button-->
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Logout
-                </a>
+                <h2> Search a song</h2>
               </div>
               
+
+              <form action="../APIs/RateSongConnection.php" method="post">
+
+                <!-- username field -->
+                <div class="form-group">
+                <label for="exampleInputEmail1" >Artist</label>
+                <input name = "artist" type="text" class="form-control" id="signupUsername" aria-describedby="signupUsernameHelp" placeholder="Enter artist">
+                </div>
+
+                <!-- password field -->
+                <div class="form-group">
+                <label for="exampleInputPassword1" >Song</label>
+                <input name = "song_name" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter song name">
+                </div>
+
+
+                <!-- login button -->
+                <!-- TODO: login button functionality-->
+                <div class="col-md-8 col-12 mx-auto pt-5 text-center">
+                <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "Search">
+                </div>
+                </form>
+
+                <!--GO Back Button [idk how to move it further down]-->
+                <div class = "col-md-8 col-12 mx-auto pt-5 text-center">
+                    <a href="listenerSongs.php" class="btn btn-primary" role="button" aria-pressed="true">
+                        <- Go Back
+                      </a>
+                </div>
             </div>
         </div>
+       
+       
     </div>
+   
 </section>
-
-<!--scroll to top-->
-<div class="scroll-top">
-    <i class="fa fa-angle-up" aria-hidden="true"></i>
-</div>
-
-
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

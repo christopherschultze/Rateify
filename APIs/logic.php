@@ -58,6 +58,14 @@
             return $result;
         }
 
+        function searchArtistSong($conn, $username, $song_id)
+        {
+            $sql = "SELECT * FROM artist_song WHERE song_id = '$song_id' AND artist_username = '$username'";
+            $result = $conn->query($sql);
+            
+            return $result;
+        }
+
         //searches for all albums inside album table
         //returns any tuples that have name = $album_name
         function searchAlbum($conn, $album_name) //done2
@@ -73,6 +81,14 @@
         function searchSongsInAlbum($conn, $album_name) //done2
         {
             $sql = "SELECT * FROM album_song WHERE album_name = '$album_name'";
+            $result = mysqli_query($conn, $sql);
+            
+            return $result;
+        }
+
+        function searchAlbumBySong($conn, $song_id)
+        {
+            $sql = "SELECT album_name FROM album_song WHERE song_id = '$song_id'";
             $result = mysqli_query($conn, $sql);
             
             return $result;

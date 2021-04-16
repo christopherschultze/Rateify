@@ -8,7 +8,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rateify - Artist</title>
+    <title>Rateify - Search Songs</title>
     <meta name="description"
           content="Rateify is a music service that allows users to rate songs"/>
 
@@ -22,6 +22,9 @@
 
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="css/default.css" id="theme-color">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 </head>
 <body>
 
@@ -49,56 +52,53 @@
             <div class="col-12 mx-auto my-auto text-center">
               
               <div class="col text-center">
-              <h1> Hello <?php echo $_SESSION['username'] ?></h1>
-              <p> Username: <?php echo $_SESSION['username'] ?></p> 
-              <p> Account Type: <?php echo $_SESSION['account_type'] ?></p> 
+              <h1> Search Results for <?php echo $_SESSION['searchedSongName'];?> </h1>
               </div>
 
-              <!-- header -->
+              <!-- hyperlinks -->
               <div class="col text-center">
-                <h2> Please select an action. </h2>
+                <a href="searchSong.php"> Return to action page</a>.
               </div>
 
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <form action="../APIs/DisplayArtistSongsConnection.php" method="post">
-                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "View My Songs">
-                </form>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <form action="../APIs/DisplayArtistAlbumsConnection.php" method="post">
-                  <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" value = "View My Albums">
-                </form>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
-                  Create a new Song
-                </a>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
-                  Create Albums
-                </a>
-              </div>
-
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="../APIs/AddSongToAlbumConnection.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Add Songs to Album
-                </a>
-              </div>
-
-              <!-- logout button-->
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Logout
-                </a>
-              </div>
-              
+              <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Song</th>
+                        <th scope="col">Artist</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+              <!-- view song form -->
+                  <?php
+                  include '../APIs/connection.php';
+                  include '../APIs/logic.php';
+                  $conn = connect();
+                    if(sizeof($_SESSION['all_rating_songs']) != 0)
+                    {
+                        echo '<h3> Found! </h3>';
+                        $index = 0;
+                        $id = 0;
+                        while($index < sizeof($_SESSION['all_rating_songs']))
+                        {
+                            $result = searchSong($conn, $_SESSION['all_rating_songs'][$index]['song_id']);
+                            $song_name = $result->fetch_assoc();
+                            echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name['name'].'</td><td>'.$_SESSION['all_rating_songs'][$index]['artist_username'].'</td></tr>';
+                            $index++;
+                            $id++;
+                        }
+                    }
+                    else
+                    {
+                        echo '<h3> No results </h3>';
+                    }
+                  ?> 
+              </tbody>
+            </table>
             </div>
         </div>
     </div>
+
 </section>
 
 <!--scroll to top-->

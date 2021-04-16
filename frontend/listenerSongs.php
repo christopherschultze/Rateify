@@ -50,7 +50,7 @@
                 
               <!-- header -->
               <div class="col text-center">
-                <h1> Hello, {account.username}.</h1>
+                <h1> Hello <?php echo $_SESSION['username'];?></h1>
               </div>
               <div class="col text-center">
                 <h2> Please select a song. </h2>
@@ -68,8 +68,8 @@
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="#" class="btn btn-primary" role="button" aria-pressed="true">
-                  Rate selected song
+                <a href="RateSongView.php" class="btn btn-primary" role="button" aria-pressed="true">
+                  Rate a song
                 </a>
               </div>
 
