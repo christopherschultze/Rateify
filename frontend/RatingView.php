@@ -95,7 +95,7 @@
 
                 <!--GO Back Button [idk how to move it further down]-->
                 <div class = "positioning">
-                    <a href="displayRateSong.php" class="btn btn-primary" role="button" aria-pressed="true">
+                    <a href="listenerSongs.php" class="btn btn-primary" role="button" aria-pressed="true">
                         <- Go Back
                       </a>
                 </div>
