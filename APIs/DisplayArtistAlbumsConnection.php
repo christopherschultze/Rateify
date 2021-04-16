@@ -23,6 +23,7 @@
             $_SESSION['artists_albums'] = NULL;
         }
         
+        
         header("Location: ../frontend/ArtistViewAlbums.php");
 
     closeCon($conn); 
