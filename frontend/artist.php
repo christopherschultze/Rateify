@@ -83,12 +83,6 @@
                 </a>
               </div>
 
-              <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                <a href="../APIs/AddSongToAlbumConnection.php" class="btn btn-primary" role="button" aria-pressed="true">
-                  Add Songs to Album
-                </a>
-              </div>
-
               <!-- logout button-->
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
                 <a href="index.php" class="btn btn-primary" role="button" aria-pressed="true">
