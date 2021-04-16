@@ -96,7 +96,17 @@
                     }
                   ?>
               </tbody>
+              
             </table> 
+
+            <?php
+              echo "<br>";
+              echo "<br>";
+              echo "<br>";
+              echo '<div><a href="../APIs/AddSongToAlbumConnection.php"> +Add Song To Album</a>.</div>';
+              echo "<br>";
+              echo "<br>";
+            ?>
             </div>
     </div>
 </section>
