@@ -36,7 +36,7 @@
             $sql = "INSERT INTO account (username, password, account_type, id)
                     VALUES(?, ?, ?, $id)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sss', $username, $pwd);
+            $stmt->bind_param('sss', $username, $pwd,$type);
             
             if ($stmt->execute() === TRUE) {
                 echo "New record created successfully";
