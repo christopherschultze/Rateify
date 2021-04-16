@@ -99,16 +99,17 @@
             </div>
             <div class=" mx-auto pt-5 text-center">
                 <h3> <?php if(!empty($_SESSION['users_playlists'])){echo $_SESSION['users_playlists'][$_SESSION['curr_playlist']];} ?></h3>
-                <table style = "width: 800px;" class="table">
+                <table style = "width: 850px;" class="table">
                     <thead>
                     <tr>
+                        <th scope="col">REMOVE SONG</th>
                         <th scope="col">#</th>
                         <th scope="col">Song</th>
                         <th scope="col">Artist</th>
                         <th scope="col">Album</th>
                         <th scope="col">Duration</th>
                         <th scope="col">No_of_Plays</th>
-                        <th scope="col">Play Song</th>
+                        <th scope="col">PLAY SONG</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -145,7 +146,7 @@
                         {
                           if($iteration == 0)
                           {
-                            echo '<tr><th scope="row">'.$id.'</th><td>'.$song_name.'</td><td>'.$a.'</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td>  <td> <div style="position: relative;"><button name = "song_played['.$song_id.']" style="background-color: rgb(0, 0, 0); border: black;" type = "submit"><img src="Images/Play-Button-PNG-Image.png" width="auto" height="41" /></button></div></td></tr>';
+                            echo '<tr><th scope="row"><input type = "submit" name = "removing['.$song_id.']" class="btn btn-primary" role="button" aria-pressed="true" value = "REMOVE" formaction="../APIs/RemoveFromPlaylistConnection.php" /></th><th scope="row">'.$id.'</th><td>'.$song_name.'</td><td>'.$a.'</td><td>'.$album_name.'</td><td>'.$duration.'</td><td>'.$no_of_plays.'</td>  <td> <div style="position: relative;"><button name = "song_played['.$song_id.']" style="background-color: rgb(0, 0, 0); border: black;" type = "submit"><img src="Images/Play-Button-PNG-Image.png" width="auto" height="41" /></button></div></td></tr>';
                           }
                           else
                           {
