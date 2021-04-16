@@ -9,10 +9,10 @@
         {
             $sql = "SELECT * FROM account WHERE username = ? AND password = ?";
 
-            $sql2 = $conn->prepare($sql);
-            $sql2->bind_param('ss', $username, $pwd);
-            $sql2->execute();
-            $result = $sql2->get_result();
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ss', $username, $pwd);
+            $stmt->execute();
+            $result = $stmt->get_result();
             return $result;
         }
         //searches an account based on a given username
@@ -31,8 +31,11 @@
             $row = $result->fetch_assoc(); 
             $id = $row["max_id"] + 1;
             $sql = "INSERT INTO account (username, password, account_type, id)
-                    VALUES('$username', '$password', '$type', '$id')";
-            if ($conn->query($sql) === TRUE) {
+                    VALUES(?, ?, ?, $id)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('sss', $username, $pwd);
+            
+            if ($stmt->execute() === TRUE) {
                 echo "New record created successfully";
             } else {
              echo "Error: " . $sql . "<br>" . $conn->error;
@@ -56,17 +59,21 @@
         //return the tuple of the song table if there is a matching tuple
         function searchSong($conn, $songId) // done2
         {
-            $sql = "SELECT * FROM spotify.song WHERE id = $songId";
-            $result = $conn->query($sql);
-            
+            $sql = "SELECT * FROM spotify.song WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('i', $songId);
+            $stmt->execute();
+            $result = $stmt->get_result();
             return $result;
         }
 
         function searchArtistSong($conn, $username, $song_id)
         {
-            $sql = "SELECT * FROM artist_song WHERE song_id = '$song_id' AND artist_username = '$username'";
-            $result = $conn->query($sql);
-            
+            $sql = "SELECT * FROM artist_song WHERE song_id = ? AND artist_username = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('is', $song_id, $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
             return $result;
         }
 
@@ -114,8 +121,12 @@
         //result will contain all the songs that are made by this artist
         function searchSongByArtist($conn, $username) //done2
         {
-            $sql = "SELECT * FROM artist_song WHERE artist_username = '$username'";
-            $result = $conn->query($sql);
+            // $sql = "SELECT * FROM artist_song WHERE artist_username = '$username'";
+            $sql = "SELECT * FROM artist_song WHERE artist_username = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
             return $result;
         }
 
@@ -131,9 +142,11 @@
 
         function searchSongByName($conn, $song_name) //done2
         {
-            $sql = "SELECT * FROM song AS songs, artist_song AS artists WHERE songs.id = artists.song_id AND songs.name = '$song_name'";
-            $result = mysqli_query($conn, $sql);
-            
+            $sql = "SELECT * FROM song AS songs, artist_song AS artists WHERE songs.id = artists.song_id AND songs.name = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $song_name);
+            $stmt->execute();
+            $result = $stmt->get_result();
             return $result;
         }
 
@@ -184,9 +197,11 @@
         // result contains all ratings made by specific user under specific song
         function searchSpecificRatings($conn, $songID, $username) //done2
         {
-            $sql = "SELECT * FROM rating WHERE song_id = $songID AND user_username = '$username'";
-            $result = mysqli_query($conn, $sql);
-            
+            $sql = "SELECT * FROM rating WHERE song_id = ? AND user_username = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('is', $songID, $user_username);
+            $stmt->execute();
+            $result = $stmt->get_result();
             return $result;
         }
 
@@ -205,16 +220,24 @@
             if($album_name == NULL)
             {
                 $sql = "INSERT INTO song (id, album_name, no_of_plays, duration, name, date_created)
-                        VALUES ('$id', NULL, '$no_of_plays', '$duration', '$name', '$date_created')";
+                VALUES (?, NULL, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                // TODO: is duration a string? is date_created a string?
+                $stmt->bind_param('iisss', $id, $no_of_plays, $duration, $name, $date_created);
+
             }
             else
             {
                 $sql = "INSERT INTO song (id, album_name, no_of_plays, duration, name, date_created)
-                        VALUES ('$id', '$album_name', '$no_of_plays', '$duration', '$name', '$date_created')";
+                VALUES (?, ?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                // TODO: is duration a string? is date_created a string?
+                $stmt->bind_param('iissss', $id, $album_name, $no_of_plays, $duration, $name, $date_created);
             }
-            if ($conn->query($sql) === TRUE) {
+            if ($stmt->execute() === TRUE) {
                 echo "New record created successfully";
             } else {
+                // TODO: is error message worth fixing? $sql is not what is expected (this applies to many error messages)
              echo "Error: " . $sql . "<br>" . $conn->error;
             }
             if($album_name != NULL)
@@ -229,8 +252,11 @@
         function addToArtistSong($conn, $username, $id) // done2
         {
             $sql = "INSERT INTO artist_song (artist_username, song_id)
-                    VALUES('$username', '$id')";
-            if ($conn->query($sql) === TRUE) {
+                    VALUES(?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('si', $username, $id);
+
+            if ($stmt->execute() === TRUE) {
                 echo "New record created successfully";
             } else {
              echo "Error: " . $sql . "<br>" . $conn->error;
@@ -241,8 +267,10 @@
         function addToProduceSong($conn, $username, $id) //done2
         {
             $sql = "INSERT INTO producer_song (producer_username, song_id)
-                    VALUES('$username', '$id')";
-            if ($conn->query($sql) === TRUE) {
+                    VALUES(?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('si', $username, $id);
+            if ($stmt->execute() === TRUE) {
                 echo "New record created successfully";
             } else {
              echo "Error: " . $sql . "<br>" . $conn->error;
@@ -253,26 +281,36 @@
         function createPlaylist($conn, $name, $user_username) //done2
         {
             $sql = "INSERT INTO playlist (user_username, name, no_of_songs, duration)
-                    VALUES('$user_username', '$name', 0, 0)";
-           if ($conn->query($sql) === TRUE) {
+                    VALUES(?, ?, 0, 0)";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ss', $user_username, $name);
+            $stmt->execute();
+            if($stmt->execute() === TRUE) {
                 echo "New record created successfully";
             } else {
-             echo "Error: " . $sql . "<br>" . $conn->error;
+                //  echo "Error: " . $sql . "<br>" . $conn->error;
+                echo "Error: in createPlaylist";
             }  
         }
 
         //Adds a specific song to a specific Album and calls the makeChangestoAlbum function to edit Album info based on Song info
         function addSongToAlbum($conn, $a_name, $songId) // done2
         {
+
             $sql = "INSERT INTO album_song (album_name, song_id) 
-                    VALUES('$a_name', '$songId')";
-            if ($conn->query($sql) === TRUE) {
+            VALUES(?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('si', $a_name, $songId);
+            if ($stmt->execute() === TRUE) {
                 echo "New record created successfully";
             } else {
              echo "Error: " . $sql . "<br>" . $conn->error;
             }        
-            $sql = "UPDATE song SET album_name = '$a_name' WHERE id = '$songId'";
-            if ($conn->query($sql) === TRUE) {
+            $sql = "UPDATE song SET album_name = ? WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('si', $a_name, $songId);
+            if ($stmt->execute() === TRUE) {
                 echo "New record created successfully";
             } else {
              echo "Error: " . $sql . "<br>" . $conn->error;
@@ -319,9 +357,15 @@
         // Adds a new rating to a specific song that is made by a specific user
         function addRating($conn, $username, $songId, $comment, $star_rating) //done2
         {
+            // $sql = "INSERT INTO rating (user_username, song_id, star_rating, comment)
+            //         VALUES('$username', '$songId', '$star_rating', '$comment')";
             $sql = "INSERT INTO rating (user_username, song_id, star_rating, comment)
-                    VALUES('$username', '$songId', '$star_rating', '$comment')";
-            if ($conn->query($sql) === TRUE) {
+                     VALUES(?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            // TODO: what type is $star_rating?
+            $stmt->bind_param('siis', $username, $songID, $star_rating, $comment);
+
+            if ($stmt->execute() === TRUE) {
                 echo "New record created successfully";
             } else {
              echo "Error: " . $sql . "<br>" . $conn->error;
@@ -337,14 +381,19 @@
             {
                 $row = $result->fetch_assoc();
                 $dur = $row['duration'];
-                $sql = "UPDATE album SET duration = duration + $dur WHERE name = '$a_name' ";
-                if ($conn->query($sql) === TRUE) {
+                $sql = "UPDATE album SET duration = duration + $dur WHERE name = ? ";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('s', $a_name);
+
+                if ($stmt->execute() === TRUE) {
                     echo "New record created successfully";
                 } else {
                  echo "Error: " . $sql . "<br>" . $conn->error;
                 } 
-                $sql = "UPDATE album SET no_of_songs = no_of_songs + 1 WHERE name = '$a_name' ";
-                if ($conn->query($sql) === TRUE) {
+                $sql = "UPDATE album SET no_of_songs = no_of_songs + 1 WHERE name = ? ";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('s', $a_name);
+                if ($stmt->execute() === TRUE) {
                     echo "New record created successfully";
                 } else {
                  echo "Error: " . $sql . "<br>" . $conn->error;
@@ -413,41 +462,53 @@
         function deleteSong($conn, $songID) //done2
         {
 
-            $sql = "DELETE FROM album_song WHERE song_id = $songID";
-            if ($conn->query($sql) === TRUE) {
+            $sql = "DELETE FROM album_song WHERE song_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('i', $songID);
+            if ($stmt->execute() === TRUE) {
                 echo "Record deleted successfully";
                 } else {
                 echo "Error deleting record: " . $conn->error;
                 }
-            $sql = "DELETE FROM playlist_song WHERE song_id = $songID";
-            if ($conn->query($sql) === TRUE) {
+            $sql = "DELETE FROM playlist_song WHERE song_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('i', $songID);
+            if ($stmt->execute() === TRUE) {
                 echo "Record deleted successfully";
                 } else {
                 echo "Error deleting record: " . $conn->error;
                 }
-            $sql = "DELETE FROM producer_song WHERE song_id = $songID";
-            if ($conn->query($sql) === TRUE) {
+            $sql = "DELETE FROM producer_song WHERE song_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('i', $songID);
+            if ($stmt->execute() === TRUE) {
                 echo "Record deleted successfully";
                 } else {
                 echo "Error deleting record: " . $conn->error;
                 }
-            $sql = "DELETE FROM artist_song WHERE song_id = $songID";
-            if ($conn->query($sql) === TRUE) {
+            $sql = "DELETE FROM artist_song WHERE song_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('i', $songID);
+            if ($stmt->execute() === TRUE) {
                 echo "Record deleted successfully";
                 } else {
                 echo "Error deleting record: " . $conn->error;
                 }
 
-            $sql = "DELETE FROM rating WHERE song_id = $songID";
-            if ($conn->query($sql) === TRUE) {
+            $sql = "DELETE FROM rating WHERE song_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('i', $songID);
+            if ($stmt->execute() === TRUE) {
                 echo "Record deleted successfully";
                 } else {
                 echo "Error deleting record: " . $conn->error;
                 }
 
-            $sql = "DELETE FROM song WHERE id = '$songID'";
+            $sql = "DELETE FROM song WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('i', $songID);
 
-            if ($conn->query($sql) === TRUE) {
+            if ($stmt->execute() === TRUE) {
             echo "Record deleted successfully";
             } else {
             echo "song not found " . $conn->error;
@@ -457,8 +518,15 @@
         //if the user is an admin, it lets the user delete a rating made by a specific user on a specific song 
         function deleteRating($conn, $username, $songId) //done2
         {
-            $sql = "DELETE FROM rating WHERE song_id = $songId AND user_username = '$username'";
-            if ($conn->query($sql) === TRUE) {
+            $sql = "DELETE FROM rating WHERE song_id = ? AND user_username = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('is', $songId, user_username);
+            if ($stmt->execute() === TRUE) {
+                echo "Record deleted successfully";
+                } else {
+                echo "song not found " . $conn->error;
+                }
+            if ($stmt->execute() === TRUE) {
                 echo "Record deleted successfully";
                 } else {
                 echo "song not found " . $conn->error;
