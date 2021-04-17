@@ -54,7 +54,7 @@
 
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a href="searchSong.php"> Return to action page</a>.
+                <a href="listener.php"> <- Return to user page</a>.
               </div>
 
               <table class="table">

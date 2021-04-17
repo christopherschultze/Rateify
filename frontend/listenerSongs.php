@@ -58,7 +58,7 @@
               
               <!-- hyperlinks -->
               <div class="col text-center">
-                <a href="listener.php"> Return to action page</a>.
+                <a href="listener.php"> Return to user page</a>.
               </div>
 
               <div class="col-md-8 col-12 mx-auto pt-5 text-center">
