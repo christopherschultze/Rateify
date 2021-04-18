@@ -217,7 +217,7 @@
         {
             // $sql = "SELECT * FROM artist_album WHERE artist_username = '$username'";
             // $result = mysqli_query($conn, $sql);
-            $sql = "SELECT * FROM playlist WHERE user_username = ?";
+            $sql = "SELECT * FROM artist_album WHERE artist_username = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param('s', $username);
             $stmt->execute();
