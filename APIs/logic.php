@@ -547,42 +547,20 @@
             
         }
 
-        // allows a general user or an admin to edit the comment of a Rating made by a specific user on a specific song 
-        function editComment($conn, $username, $songId, $comment) //done2
-        {
-            $sql = "UPDATE rating SET comment = '$comment' WHERE user_username = '$username' AND song_id = $songId";
-            if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-            } else {
-             echo "Error: " . $sql . "<br>" . $conn->error;
-            }  
-        }
-
-        // allows a general user or an admin to edit the Star rating of a Rating made by a specific user on a specific song 
-        function editStarRating($conn, $username, $songId, $star) //done2
-        {
-            $sql = "UPDATE rating SET star_rating = $star WHERE user_username = '$username' AND song_id = $songId";
-            if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-            } else {
-             echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-        }
-
         // if the user is an admin, it lets the user delete a Song as well as all relations that song has
         function deleteSong($conn, $songID) //done2
         {
             $notify = 0;
-            $result = searchSong($conn, $song_id);
+            $result = searchSong($conn, $songID);
             // $sql = "DELETE FROM album_song WHERE song_id = $songID";
             $sql = "DELETE FROM album_song WHERE song_id = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param('i', $songID);
                 if ($stmt->execute() === TRUE) {
-                    echo "<script>alert('Song deleted successfully');</script>";
+                    //echo "<script>alert('Song deleted successfully');</script>";
                     $notify = 1;
                     } else {
-                    echo "Error deleting record: " . $conn->error;
+                    //echo "Error deleting record: " . $conn->error;
                     $notify = 2;
                     }
                 // $sql = "DELETE FROM playlist_song WHERE song_id = $songID";
@@ -590,18 +568,18 @@
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param('i', $songID);
                 if ($stmt->execute() === TRUE) {
-                    echo "Record deleted successfully";
+                    //echo "Record deleted successfully";
                     } else {
-                    echo "Error deleting record: " . $conn->error;
+                    //echo "Error deleting record: " . $conn->error;
                     }
                 // $sql = "DELETE FROM producer_song WHERE song_id = $songID";
                 $sql = "DELETE FROM producer_song WHERE song_id = ?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param('i', $songID);
                 if ($stmt->execute() === TRUE) {
-                    echo "Record deleted successfully";
+                    //echo "Record deleted successfully";
                     } else {
-                    echo "Error deleting record: " . $conn->error;
+                    //echo "Error deleting record: " . $conn->error;
                     }
 
                 // $sql = "DELETE FROM rating WHERE song_id = $songID";
@@ -609,18 +587,18 @@
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param('i', $songID);
                 if ($stmt->execute() === TRUE) {
-                    echo "Record deleted successfully";
+                   // echo "Record deleted successfully";
                     } else {
-                    echo "Error deleting record: " . $conn->error;
+                    //echo "Error deleting record: " . $conn->error;
                     }
 
                 $sql = "DELETE FROM rating WHERE song_id = ?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param('i', $songID);
                 if ($stmt->execute() === TRUE) {
-                    echo "Record deleted successfully";
+                    //echo "Record deleted successfully";
                     } else {
-                    echo "Error deleting record: " . $conn->error;
+                    //echo "Error deleting record: " . $conn->error;
                     }
 
                 // $sql = "DELETE FROM song WHERE id = '$songID'";
@@ -628,9 +606,9 @@
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param('i', $songID);
                 if ($stmt->execute() === TRUE) {
-                echo "Record deleted successfully";
+                    $notify = 1;
                 } else {
-                echo "song not found " . $conn->error;
+                    $notify = 2;
                 }
             return $notify;
         }
