@@ -101,6 +101,8 @@
               echo "<br>";
               echo "<br>";
               echo "<br>";
+              $_SESSION['artist_rating'] = $_SESSION['songs_artist'];
+              $_SESSION['song_name_rating'] = $_SESSION['selected_songs_info']['name'];
               echo '<div><a href="RatingView.php"> +Rate This Song</a>.</div>';
               echo "<br>";
               echo "<br>";
