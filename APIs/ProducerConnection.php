@@ -10,6 +10,6 @@
     $result = getMaxSongID($conn);
     $row = $result->fetch_assoc();
     $id = $row['max_id'] + 1;
-    createSong($conn, $id, NULL, 0, $duration, $song_name, $date, $producer_name, 'producer');
+    $_SESSION['notify'] = createSong($conn, $id, NULL, 0, $duration, $song_name, $date, $producer_name, 'producer');
     header("Location:../frontend/ProducerFrontEnd.php");
 ?>

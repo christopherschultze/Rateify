@@ -1,5 +1,6 @@
 <?php
   session_start();
+  $_SESSION['notify'];
 ?>
 
 
@@ -51,7 +52,15 @@
               <div class="col text-center">
                 <h1> Upload your Track</h1>
               </div>
-
+              <?php
+                if($_SESSION['notify'] === 1)
+                {
+                  echo "<script>alert('song created successfully');</script>";
+                }
+                if($_SESSION['notify'] == 2)
+                  echo "<script>alert('Failed');</script>";
+                $_SESSION['notify'] = 0;
+              ?>
                 <!-- signup form -->
                 <form action="../APIs/ProducerConnection.php" method="post">
 
@@ -74,7 +83,7 @@
                     <!-- login button -->
                     <!-- TODO: login button functionality-->
                     <div class="col-md-8 col-12 mx-auto pt-5 text-center">
-                      <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "PUBLISH!">
+                      <input type = "submit" class="btn btn-primary" role="button" aria-pressed="true" name = "button" value = "PUBLISH!" onclick='window.location.reload();'>
                     </div>
                 </form>
                 <div class="col-md-8 col-12 mx-auto pt-5 text-center">
