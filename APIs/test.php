@@ -3,7 +3,7 @@
     include 'logic.php';
     
     $conn = connect();
-    $result = deleteAccount($conn, 'producer1', 'producer');
+   deleteSong($conn, 12);
     // echo $_POST['formGender'];
     // echo "<br>";
     // echo $_POST['comment'];

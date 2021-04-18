@@ -57,6 +57,8 @@
         //return the tuple of the song table if there is a matching tuple
         function searchSong($conn, $songId) // done2
         {
+            // echo $songId;
+            // echo "<br>";
             // $sql = "SELECT * FROM spotify.song WHERE id = $songId";
             // $result = $conn->query($sql);
             $sql = "SELECT * FROM spotify.song WHERE id = ?";
@@ -518,6 +520,32 @@
             
         }
 
+        function decreaseDurationToAlbum($conn, $song_id, $a_name)
+        {
+            $result = searchSong($conn, $song_id);
+            $dur = 0;
+            $row = $result->fetch_assoc();
+            $dur = $row['duration'];
+            echo $row['duration'];
+            $sql = "UPDATE album SET duration = duration - $dur WHERE name = ? ";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $a_name);
+            if ($stmt->execute() === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            } 
+            // $sql = "UPDATE album SET no_of_songs = no_of_songs + 1 WHERE name = '$a_name' ";
+            $sql = "UPDATE album SET no_of_songs = no_of_songs - 1 WHERE name = ? ";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $a_name);
+            if ($stmt->execute() === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            } 
+        }
+
         // function that is called whenever a new song is added to a playlist which edits the no_of_songs and duration of the playlist
         function makeChangestoPlaylist($conn, $p_name, $songId) // done2
         {
@@ -552,6 +580,10 @@
         {
             $notify = 0;
             $result = searchSong($conn, $songID);
+
+            $result = searchAlbumBySong($conn, $songID);
+                while($al_names = $result->fetch_assoc())
+                    decreaseDurationToAlbum($conn, $songID, $al_names['album_name']);
             // $sql = "DELETE FROM album_song WHERE song_id = $songID";
             $sql = "DELETE FROM album_song WHERE song_id = ?";
             $stmt = $conn->prepare($sql);
@@ -591,6 +623,7 @@
                     } else {
                     //echo "Error deleting record: " . $conn->error;
                     }
+                
 
                 $sql = "DELETE FROM rating WHERE song_id = ?";
                 $stmt = $conn->prepare($sql);
