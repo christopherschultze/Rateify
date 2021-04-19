@@ -72,6 +72,8 @@
             }
             echo json_encode($myArray);
 
+            break;
+
         case "searchSong":
 
             // variables
@@ -276,7 +278,7 @@
             $album_name = $_GET['album_name'];
 
             // method call
-            $result = searchPlaylistsByUser($conn, $username, $album_name);
+            $result = searchAlbumArtist($conn, $username, $album_name);
 
             // display for postman
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -329,6 +331,7 @@
                 $myArray[] = $row;
             }
             echo json_encode($myArray);
+            break;
 
         case "deleteSong":
 
@@ -347,15 +350,16 @@
             break;
 
         case "removeSongFromPlaylist":
+
             //variables
-            $playlist_name = _GET['playlist_name'];
-            $songID = _GET['song_id'];
-            $username = GET_['username'];
+            $playlist_name = $_GET['playlist_name'];
+            $songID = $_GET['song_id'];
+            $username = $_GET['username'];
         
             //method call
             removeSongFromPlaylist($conn, $playlist_name, $songID, $username);
             //display for postman
-            echo "remove song from playlist successfully";
+            //echo "remove song from playlist successfully";
             break;
         
         case "deleteRating":
@@ -433,7 +437,7 @@
             increaseNoOfPlays($conn, $songID);
         
             //display for postman
-            echo "Successful";
+            //echo "Successful";
             break;
         
         case "addSongToPlayList":
@@ -466,7 +470,7 @@
             $username = $_GET['username'];
         
             //method call
-            createPlaylist($conn, $p_name, $songID);
+            createPlaylist($conn, $p_name, $username);
         
             //display for postman
             echo "Successful";
@@ -511,6 +515,18 @@
             //display to postman
             echo "Successful";
             break;
+
+        case "decreaseDurationToAlbum":
+
+            $song_id = $_GET['song_id'];
+            $a_name = $_GET['album_name'];
+            
+            decreaseDurationToAlbum($conn, $song_id, $a_name);
+
+            break;
+
+
+            
     }
 
 
